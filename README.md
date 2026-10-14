@@ -8,7 +8,7 @@ The company doesn't exist. Neither do its three employees, Tadeusz, Zacheusz and
 
 | File | What it is |
 |---|---|
-| `krawtowy-kod.html` | Polish site (main version) |
+| `index.html` | Polish site (main version) |
 | `en/index.html` | English translation |
 | `README.md` | This file, written by hand, obviously |
 
@@ -23,13 +23,13 @@ Each language is a single HTML file containing three or four pages. A short scri
 
 ## Viewing it
 
-There's no build step. Open `krawtowy-kod.html` in a browser, or serve the folder so the links between languages work:
+There's no build step. Open `index.html` in a browser, or serve the folder so the links between languages work:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then go to http://localhost:8000/krawtowy-kod.html.
+Then go to http://localhost:8000.
 
 There's also a private published copy at https://claude.ai/artifact/3jVeMTRGktKtqMYC4tm9Ea. Only people it's shared with can open it.
 
@@ -38,7 +38,8 @@ There's also a private published copy at https://claude.ai/artifact/3jVeMTRGktKt
 - **Tailwind CSS** from its CDN (`cdn.tailwindcss.com/3.4.17`), with the site's colours and fonts set in a small `tailwind.config` block at the top of each file.
 - **Classes are written out in full in the HTML.** No `@apply`, no class-merging helpers, no shortened or obfuscated class names. That's part of the joke and part of the brief.
 - **Fonts** come from Google Fonts: Rye for headings, Bitter for body text, Caveat for the handwriting.
-- **Plain JavaScript** for the page switcher and the contact form. The form doesn't send anything; it only shows a confirmation with a made-up batch number.
+- **Plain JavaScript** for the page switcher and the contact form.
+- **The contact form really sends orders.** They're delivered by email through a form-handling service. The page only holds that service's public access key, which can do nothing except send messages to the brewery's inbox, so the email address itself never appears in the source. A hidden checkbox catches spam bots. The form needs a live internet connection and doesn't work inside the private claude.ai copy, which blocks requests to other sites.
 - **Animations**: the scrolling ribbon and client strip, the "BEZ AI" stamp, and the code sample writing itself line by line. All of them switch off when the visitor's system is set to reduce motion.
 - **The page is a light-only design** on purpose. It doesn't switch to dark mode.
 
@@ -48,7 +49,7 @@ Both pages ask search engines and AI crawlers not to index, cache, preview or tr
 
 ## Hosting it yourself
 
-Rename `krawtowy-kod.html` to `index.html` before uploading. The "Po polsku" link on the English page points to `../`, which only lands on the Polish page when it's called `index.html`.
+The site is deployed on Vercel as a static site, with no build settings needed. Keep the main page named `index.html`: Vercel serves it at the site root, and the "Po polsku" link on the English page points to `../`, which relies on it.
 
 ## Editing
 

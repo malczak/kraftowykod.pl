@@ -555,20 +555,20 @@
   <section data-page="stack" class="max-w-6xl mx-auto" hidden>
 
     <div class="py-12 sm:py-16 max-w-3xl">
-      <p class="font-hand text-2xl text-hop mb-3">List of ingredients, written in biro</p>
-      <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">We brew in everything.</h1>
+      <p class="font-hand text-2xl text-hop mb-3">Technical specification, written in biro</p>
+      <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">Tech stack. Hand-brewed.</h1>
       <p class="mt-6 text-lg leading-relaxed">
-        Clients ask whether we know a given technology. We always say yes.
-        Below is the full list of ingredients we brew code from. We learned every one
-        of them from a book, because the online courses were recommended to us by an algorithm.
+        The full list of technologies we deliver projects in. We learned each one
+        from the printed documentation, because the online courses were recommended
+        to us by an algorithm. Asked whether we know a given technology, we always say yes.
       </p>
     </div>
 
 
-    <!-- WHO BREWS WHAT. the dots are skill levels, scored honestly by the people concerned -->
+    <!-- TEAM COMPETENCIES. the dots are skill levels, scored honestly by the people concerned -->
     <div class="py-12 border-t-2 border-dashed border-ink/40">
-      <h2 class="font-rye text-3xl sm:text-4xl">Who brews what</h2>
-      <p class="mt-3 text-lg max-w-prose">Skill level on a scale of 0 to 5 hop cones. Everyone rated themselves.</p>
+      <h2 class="font-rye text-3xl sm:text-4xl">Team competencies</h2>
+      <p class="mt-3 text-lg max-w-prose">Skill level on a scale of 0 to 5 hop cones. Everyone rated themselves, without code review.</p>
       <p class="mt-2">
         <a href="#about" class="font-hand text-2xl text-hop underline decoration-2 underline-offset-4 hover:text-ink">Get to know our team first, before you see what they can do</a>
       </p>
@@ -629,90 +629,94 @@
     </div>
 
 
-    <!-- INGREDIENTS. grouped like in a brewery, because we liked it that way -->
+    <!-- DEPENDENCIES. grouped technically, described with a note of hops -->
     <div class="py-12 border-t-2 border-dashed border-ink/40">
-      <h2 class="font-rye text-3xl sm:text-4xl">Ingredients</h2>
-      <p class="mt-3 text-lg max-w-prose">All technologies are locally sourced, meaning from Tadeusz's hard drive.</p>
+      <h2 class="font-rye text-3xl sm:text-4xl">Dependencies</h2>
+      <p class="mt-3 text-lg max-w-prose">All technologies come from a local registry, meaning Tadeusz's hard drive. Versions pinned for good, updates once a season.</p>
 
       <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-10">
-
         <div class="min-w-0">
-          <h3 class="font-rye text-2xl">Malt: languages</h3>
+          <h3 class="font-rye text-2xl">Programming languages</h3>
+          <p class="font-hand text-xl text-hop">the malt base</p>
           <dl class="mt-3 divide-y divide-dashed divide-ink/40">
-            <div class="py-2"><dt class="font-semibold">JavaScript</dt><dd>Every undefined typed in by hand, one at a time.</dd></div>
-            <div class="py-2"><dt class="font-semibold">TypeScript</dt><dd>Types go on at the very end, like a label on a bottle. Usually any.</dd></div>
-            <div class="py-2"><dt class="font-semibold">PHP</dt><dd>On tap without a break since 2004.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Python</dt><dd>Indentation measured with a ruler. A wooden one.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Java</dt><dd>AbstractSingletonProxyFactoryBean, aged three years in an oak barrel.</dd></div>
-            <div class="py-2"><dt class="font-semibold">C and C++</dt><dd>Memory allocated by hand. Freed when we remember.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Rust</dt><dd>The borrow checker is our quality control. It hasn't let anything through yet.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Go</dt><dd>We write if err != nil from memory, 400 times per file.</dd></div>
-            <div class="py-2"><dt class="font-semibold">COBOL</dt><dd>Tadeusz's grandfather's recipe. Nobody else knows it, and it will stay that way.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Assembly</dt><dd>For connoisseurs. Served in a shot glass.</dd></div>
-            <div class="py-2"><dt class="font-semibold">SQL</dt><dd>Always SELECT *, because we don't like leaving anything out.</dd></div>
-            <div class="py-2"><dt class="font-semibold">HTML</dt><dd>Is a programming language. We're not discussing it.</dd></div>
+            <div class="py-2"><dt class="font-semibold">JavaScript</dt><dd>ES5 with a dash of ES2022. Dynamic typing, fermented in the V8 engine, every undefined declared by hand.</dd></div>
+            <div class="py-2"><dt class="font-semibold">TypeScript</dt><dd>Strict mode off for better clarity. Types are added at bottling, usually any.</dd></div>
+            <div class="py-2"><dt class="font-semibold">PHP</dt><dd>Versions 5.3 to 8.3 running side by side on one server. Aged on Apache since 2004.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Python</dt><dd>Version 2.7, a limited vintage. Indentation calibrated with a ruler: 4 spaces, give or take mood.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Java</dt><dd>JDK 8, long maturation in the JVM. Our flagship AbstractSingletonProxyFactoryBean was aged for three years.</dd></div>
+            <div class="py-2"><dt class="font-semibold">C and C++</dt><dd>Manual memory management: malloc at mashing, free when we remember. Leaks count as the angels' share.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Rust</dt><dd>The borrow checker is our quality control. It hasn't let a single build through since 2021.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Go</dt><dd>Goroutines running in parallel, like several fermenters at once. if err != nil about 400 times per file.</dd></div>
+            <div class="py-2"><dt class="font-semibold">COBOL</dt><dd>Tadeusz's grandfather's recipe, on a mainframe in the basement. Documentation is oral only.</dd></div>
+            <div class="py-2"><dt class="font-semibold">x86 Assembly</dt><dd>For low-level connoisseurs. Served in CPU registers, not pint glasses.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQL</dt><dd>Always SELECT *, the full spectrum of columns. Up to seven JOINs in a single query.</dd></div>
+            <div class="py-2"><dt class="font-semibold">HTML</dt><dd>Is a programming language. Topic closed, the pull request debating it was rejected.</dd></div>
           </dl>
         </div>
 
         <div class="min-w-0">
-          <h3 class="font-rye text-2xl">Hops: frameworks</h3>
+          <h3 class="font-rye text-2xl">Frameworks and libraries</h3>
+          <p class="font-hand text-xl text-hop">the hopping stage</p>
           <dl class="mt-3 divide-y divide-dashed divide-ink/40">
-            <div class="py-2"><dt class="font-semibold">React</dt><dd>We trigger every re-render personally.</dd></div>
-            <div class="py-2"><dt class="font-semibold">AngularJS</dt><dd>2016 hops. It gained character with age. It lost support.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Vue</dt><dd>Light, sessionable, for clients who are just getting started.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Svelte</dt><dd>Compiles down to nothing. We respect minimalism.</dd></div>
-            <div class="py-2"><dt class="font-semibold">jQuery</dt><dd>Never goes out of fashion, because it was never in it.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Next.js</dt><dd>We update it weekly, because there's a new version weekly.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Laravel and Symfony</dt><dd>Same malt, different bottle.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Django</dt><dd>The admin panel is free. We'll bill you for the rest.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Spring</dt><dd>The XML config file is 2,300 lines long and has its own documentation.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Tailwind</dt><dd>Classes written by hand, one after another. No merging, no shortcuts.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Bootstrap 3</dt><dd>We know version 5 exists. Version 3 had a better head of foam.</dd></div>
+            <div class="py-2"><dt class="font-semibold">React</dt><dd>Version 16, class components. Every re-render triggered by hand with forceUpdate().</dd></div>
+            <div class="py-2"><dt class="font-semibold">AngularJS</dt><dd>The 1.x branch, end of life in 2022. It gained character and digest cycles with age.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Vue</dt><dd>Options API, a light profile. A good start for clients new to single-page apps.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Svelte</dt><dd>Compiles to plain JavaScript with no runtime. Minimalism we respect, without fully understanding it.</dd></div>
+            <div class="py-2"><dt class="font-semibold">jQuery</dt><dd>Version 1.12, loaded three times from three different CDNs for a fuller flavour.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Next.js</dt><dd>Updated weekly, because every week there's a new major version and a new router.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Laravel and Symfony</dt><dd>Same PHP ecosystem, different packaging. Database migrations run by hand, one at a time.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Django</dt><dd>Admin panel included, ORM filtered. All other work billed by the hour.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Spring</dt><dd>XML configuration: 2,300 lines with its own documentation. App startup time is one coffee.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Tailwind CSS</dt><dd>Classes written by hand, one after another. No @apply, no merging, no shortcuts.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Bootstrap 3</dt><dd>12-column grid, glyphicons included. We know version 5 exists, but 3 had a better head of foam.</dd></div>
           </dl>
         </div>
 
         <div class="min-w-0">
-          <h3 class="font-rye text-2xl">Yeast: databases</h3>
+          <h3 class="font-rye text-2xl">Databases</h3>
+          <p class="font-hand text-xl text-hop">yeast cultures</p>
           <dl class="mt-3 divide-y divide-dashed divide-ink/40">
-            <div class="py-2"><dt class="font-semibold">PostgreSQL</dt><dd>A noble strain. Indexes added after the client's first complaint.</dd></div>
-            <div class="py-2"><dt class="font-semibold">MySQL</dt><dd>latin1 encoding, because Polish letters are a seasoning, not an ingredient.</dd></div>
-            <div class="py-2"><dt class="font-semibold">MongoDB</dt><dd>Wild fermentation. The schema settles on its own, eventually.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Redis</dt><dd>For when data needs chilling fast.</dd></div>
-            <div class="py-2"><dt class="font-semibold">SQLite</dt><dd>Small batch, one file, perfect for production.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Oracle</dt><dd>Special order only. The licence costs more than the brewery.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Excel</dt><dd>Our biggest client's production database since 2011.</dd></div>
+            <div class="py-2"><dt class="font-semibold">PostgreSQL</dt><dd>A noble relational strain. Indexes added after the first slow-query complaint.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MySQL</dt><dd>latin1 encoding, collation from the year the company was founded. Polish letters are treated as seasoning.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MongoDB</dt><dd>Schemaless fermentation. Document structure settles on its own, eventually.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Redis</dt><dd>In-memory cache for data that needs chilling fast. TTL set by feel.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQLite</dt><dd>A single-file database in production. Backups by copying the file to a USB stick.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Oracle</dt><dd>Special order only. The licence costs more than the whole brewery.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Excel</dt><dd>Our biggest client's production database since 2011. 1,048,576 rows, all of them used.</dd></div>
           </dl>
         </div>
 
         <div class="min-w-0">
-          <h3 class="font-rye text-2xl">Water: infrastructure</h3>
+          <h3 class="font-rye text-2xl">Infrastructure and DevOps</h3>
+          <p class="font-hand text-xl text-hop">water and the bottling line</p>
           <dl class="mt-3 divide-y divide-dashed divide-ink/40">
-            <div class="py-2"><dt class="font-semibold">Docker</dt><dd>We treat containers like oak barrels. Every image weighs 4 GB, because it has character.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Kubernetes</dt><dd>47 pods serving one business-card website. Supervised by Mateusz.</dd></div>
-            <div class="py-2"><dt class="font-semibold">AWS, Azure, GCP</dt><dd>All three at once. We print the invoices and frame them.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Server under the desk</dt><dd>Cooled by a desk fan. 99.9% uptime, outside the heating season.</dd></div>
-            <div class="py-2"><dt class="font-semibold">FTP</dt><dd>Deploys by dragging files, as befits a craft.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Jenkins</dt><dd>The butler. Hasn't said a word since 2019, but we wouldn't dare switch him off.</dd></div>
-            <div class="py-2"><dt class="font-semibold">GitHub Actions</dt><dd>The only automation we allow, because it's called "actions", and an action is a human deed.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Docker</dt><dd>4 GB images, built without cache for maximum freshness. Containers mature like oak barrels.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Kubernetes</dt><dd>47 pods serving one business-card website. Cluster supervised by Mateusz.</dd></div>
+            <div class="py-2"><dt class="font-semibold">AWS, Azure, GCP</dt><dd>Multi-cloud, all three at once. We print the invoices and frame them.</dd></div>
+            <div class="py-2"><dt class="font-semibold">On-premise server</dt><dd>Under Tadeusz's desk, cooled by a desk fan. 99.9% uptime outside the heating season.</dd></div>
+            <div class="py-2"><dt class="font-semibold">FTP</dt><dd>Deploys by dragging files across, by hand. Rollbacks the same, in the other direction.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jenkins</dt><dd>CI server, last build in 2019. We don't switch it off, because we don't know what else depends on it.</dd></div>
+            <div class="py-2"><dt class="font-semibold">GitHub Actions</dt><dd>The only automation we allow. It's called "actions", and an action is a human deed.</dd></div>
           </dl>
         </div>
 
         <div class="min-w-0">
-          <h3 class="font-rye text-2xl">Brewing kit: tools</h3>
+          <h3 class="font-rye text-2xl">Developer tools</h3>
+          <p class="font-hand text-xl text-hop">brewing equipment</p>
           <dl class="mt-3 divide-y divide-dashed divide-ink/40">
-            <div class="py-2"><dt class="font-semibold">Vim</dt><dd>None of us knows how to exit it, so we stayed.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Emacs</dt><dd>Tadeusz uses it. We don't ask.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Notepad</dt><dd>Our main IDE. Zero extensions, zero distractions.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Git</dt><dd>Every commit message is "fix". It's a tradition.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Jira</dt><dd>The board has 1,400 tickets in "To do" and one in "Done".</dd></div>
-            <div class="py-2"><dt class="font-semibold">Stack Overflow</dt><dd>We retype answers by hand, character by character, so it counts as our code.</dd></div>
-            <div class="py-2"><dt class="font-semibold">Squared notebook</dt><dd>Our main repository. Backup kept in a second notebook.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Vim</dt><dd>The team's main editor. Nobody knows how to exit it, so the session has been running since 2016.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Emacs</dt><dd>Tadeusz's environment. We don't ask.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Notepad</dt><dd>An IDE with no extensions, no syntax highlighting and no distractions. ANSI encoding.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Git</dt><dd>Every commit message is "fix". Non-linear history, merges in every direction.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jira</dt><dd>A workflow with 23 statuses. 1,400 tickets in "To do" and one in "Done".</dd></div>
+            <div class="py-2"><dt class="font-semibold">Stack Overflow</dt><dd>Answers retyped by hand, character by character, so licence-wise it's our code.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Squared notebook</dt><dd>Our main code repository. Replicated to a second notebook once a week.</dd></div>
           </dl>
         </div>
 
         <!-- the blacklist. crossed out in pencil, personally by Tadeusz -->
         <div class="min-w-0 border-4 border-pencil p-6 rounded-sm self-start">
-          <h3 class="font-rye text-2xl text-pencil">Never added to the brew</h3>
+          <h3 class="font-rye text-2xl text-pencil">Blocked dependencies</h3>
           <ul class="mt-3 space-y-2 text-lg">
             <li><span class="strike">GitHub Copilot</span> <span class="font-hand text-xl text-pencil">types too fast</span></li>
             <li><span class="strike">ChatGPT, Claude, Gemini</span> <span class="font-hand text-xl text-pencil">no sense of taste</span></li>
@@ -861,7 +865,8 @@
       </div>
 
 
-      <!-- FORM. the data goes nowhere, just like our deadlines -->
+      <!-- FORM. orders go to the brewery by email. the only thing in this company that arrives on time -->
+      <!-- the brewery's email address is NOT in this file. Mateusz guards that personally -->
       <form id="order-form" class="lg:col-span-3 min-w-0 notebook rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)] py-8 pr-6 pl-14 space-y-5" novalidate>
         <h2 class="font-rye text-2xl">Order a batch of code</h2>
 
@@ -873,6 +878,11 @@
         <div>
           <label for="company" class="block font-semibold">Company</label>
           <input id="company" name="company" type="text" placeholder="e.g. Bolts & Screws Wholesale Ltd" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
+        </div>
+
+        <div>
+          <label for="email" class="block font-semibold">Email for our reply</label>
+          <input id="email" name="email" type="email" required placeholder="we'll reply once the idea matures" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
         </div>
 
         <div>
@@ -906,9 +916,12 @@
           </label>
         </fieldset>
 
+        <!-- bot trap. humans never see this box, bots always tick it, because bots have no taste -->
+        <input id="botcheck" name="botcheck" type="checkbox" class="hidden" tabindex="-1" autocomplete="off">
+
         <p id="form-error" class="text-pencil font-semibold" hidden></p>
 
-        <button type="submit" class="bg-hop text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
+        <button id="order-submit" type="submit" class="bg-hop disabled:opacity-60 disabled:cursor-wait text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
           Place order
         </button>
 
@@ -967,32 +980,98 @@
   showPage();
 
 
-  // the form. sends nothing, because sending is automation
+  /*
+    WEB3FORMS INTEGRATION. A DEPLOYMENT CHRONICLE.
+
+    Day 1.  Tadeusz asks what "Web3" is. Zacheusz says it's blockchain.
+            Emergency meeting, 4 hours. We agree not to get into crypto.
+    Day 2.  Turns out it isn't blockchain, it's a form. Nobody apologises.
+    Day 3.  Mateusz copies the access key from a sticky note. 36 characters.
+            Three attempts, two typos, one hyphen too many.
+    Day 4.  Argument over whether "fetch" is a function or a command for a dog.
+            Tadeusz's dog brings back a stick. The dog wins, it's faster than our code.
+    Day 5.  Zacheusz tastes the server response. Describes it as "a dry JSON,
+            with notes of CORS and a long finish". Fixes nothing.
+    Day 6.  First test order. Sent on Friday at 4:45 pm. It arrived.
+            Nobody knows why.
+    Day 9.  Ethics debate: is sending email through someone else's server still craft?
+            Compromise: every comma in this block was placed by hand.
+    Day 10. We learn the key can be public, because it only allows sending email to us.
+            Tadeusz covers it on his monitor with a sticky note anyway.
+
+    Status: works. DO NOT TOUCH.
+  */
+  var WEB3FORMS_KEY = 'a10dc5a0-3b21-49fb-a80c-6a3ddd840329'; // copied from a sticky note, checked twice
+
   var form = document.getElementById('order-form');
   var errorBox = document.getElementById('form-error');
   var doneBox = document.getElementById('form-done');
+  var submitButton = document.getElementById('order-submit');
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
     var project = document.getElementById('project').value.trim();
     var deadline = document.getElementById('addon-deadline').checked;
 
     if (!name || !project) {
-      errorBox.textContent = 'Enter your name and a project description. We can\'t brew code without ingredients.';
-      errorBox.hidden = false;
+      showError('Enter your name and a project description. We can\'t brew code without ingredients.');
+      return;
+    }
+    if (!email || !document.getElementById('email').checkValidity()) {
+      showError('Enter a valid email. Otherwise our reply goes by carrier pigeon, and that takes a while.');
       return;
     }
     if (!deadline) {
-      errorBox.textContent = 'Tick the box saying the deadline is a suggestion. We don\'t take orders without it.';
-      errorBox.hidden = false;
+      showError('Tick the box saying the deadline is a suggestion. We don\'t take orders without it.');
       return;
     }
 
     errorBox.hidden = true;
-    document.getElementById('batch-no').textContent = String(Math.floor(Math.random() * 9000) + 1000);
-    doneBox.hidden = false;
+    doneBox.hidden = true;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending, by hand…';
+
+    var batchNo = String(Math.floor(Math.random() * 9000) + 1000);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: 'Kraftowy Kod: order for batch no. ' + batchNo + ' (EN)',
+        from_name: 'Kraftowy Kod, order form',
+        name: name,
+        email: email,
+        company: document.getElementById('company').value.trim(),
+        project: project,
+        urgency: document.getElementById('urgency').value,
+        printout: document.getElementById('addon-print').checked ? 'yes' : 'no',
+        floppy: document.getElementById('addon-floppy').checked ? 'yes' : 'no',
+        botcheck: document.getElementById('botcheck').checked
+      })
+    })
+      .then(function (response) { return response.json(); })
+      .then(function (result) {
+        if (!result.success) throw new Error(result.message);
+        document.getElementById('batch-no').textContent = batchNo;
+        doneBox.hidden = false;
+        form.reset();
+      })
+      .catch(function () {
+        showError('We couldn\'t send your order. Check your connection and try again, or call during a full moon.');
+      })
+      .then(function () {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Place order';
+      });
   });
 </script>
 
