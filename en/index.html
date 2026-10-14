@@ -3,12 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kraftowy Kod</title>
+<title>Kraftowy Kod | Hand-brewed software house, no AI</title>
 
 <!-- no robots allowed. not the search engine ones, not the AI ones. tastings are for humans only -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, noai, noimageai">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+
+<!-- SEO and Open Graph. the page's business card for search engines and messengers.
+     every tag typed by hand, preview images drawn by og/generate.py -->
+
+<!--
+  OPEN GRAPH. A DEPLOYMENT CHRONICLE, PART TWO.
+
+  Week 1, Monday.
+    A client pastes our link into Slack. Instead of a preview there's a grey rectangle
+    that says "localhost". The client asks if that's intentional. We say yes. Minimalism.
+
+  Tuesday.
+    Tadeusz establishes that "Open Graph" is a graph database. He orders a book on Neo4j, 640 pages.
+
+  Wednesday.
+    Zacheusz claims "OG" means "original gangster" and the site needs more street credibility.
+    Mateusz draws a gold chain on the bottle cap. Removed in code review, which took 6 weeks.
+
+  Thursday.
+    Someone reads the specification for the first time. They're meta tags. Ordinary meta tags.
+    The Neo4j book stays with the company. It props up the server under the desk.
+
+  Friday.
+    We set og:image to "picture.png". Facebook replies that the URL must be absolute.
+    Tadeusz replies to Facebook that so is he. The exchange lasts until 4:45 pm, then we deploy.
+
+  Week 2.
+    The image must be 1200 by 630 pixels. Mateusz measures the monitor with a ruler: 31 cm.
+    We agree that a pixel is a nominal unit, like a deadline.
+
+  Week 3.
+    The Facebook preview still shows the old version. We clear the cache. Old version.
+    We clear it again. Old version. Zacheusz tastes the cache and describes it as
+    "stubborn, with a very long finish". He fixes nothing.
+
+  THE AHA MOMENT. Tuesday, 11:40 pm, by the light of one candle.
+    Tadeusz looks at the link preview and says, very slowly: "It's a label."
+    Silence. Everyone gets it at once.
+    A messenger app doesn't drink the beer. It looks at the label.
+    Nobody buys a bottle until they've seen the label, and since 2014 we've been
+    sending people bare bottles. That's why we have two clients. One of them twice.
+    Mateusz cries. Zacheusz describes the tears as "salty, sincere, with a note of epiphany".
+
+  The second aha moment. Wednesday, 9:05 am, over coffee.
+    We added SEO so people would find us. A few lines above, we blocked every robot
+    so nobody would find us. Long meeting. We keep both:
+    messengers will still come for the label, robots won't come at all. The label is for humans.
+
+  Status: label stuck on by hand, holding. DO NOT TOUCH.
+-->
+<meta name="description" content="Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.">
+<meta name="author" content="Kraftowy Kod">
+<meta name="theme-color" content="#3d5726">
+<link rel="canonical" href="https://kraftowykod.pl/en/">
+<link rel="alternate" hreflang="pl" href="https://kraftowykod.pl/">
+<link rel="alternate" hreflang="en" href="https://kraftowykod.pl/en/">
+<link rel="alternate" hreflang="x-default" href="https://kraftowykod.pl/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kraftowy Kod">
+<meta property="og:title" content="Kraftowy Kod: code slowly ageing in our heads">
+<meta property="og:description" content="Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.">
+<meta property="og:url" content="https://kraftowykod.pl/en/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:image" content="https://kraftowykod.pl/og/og-en.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Kraftowy Kod logo, the slogan "Code slowly ageing in our heads" and handwritten code in a notebook with Copilot crossed out">
+<meta property="og:image" content="https://kraftowykod.pl/og/og-en-manifest.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Part of the Anti-AI Manifesto, signed by Tadeusz, Zacheusz and Mateusz">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kraftowy Kod: code slowly ageing in our heads">
+<meta name="twitter:description" content="Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.">
+<meta name="twitter:image" content="https://kraftowykod.pl/og/og-en.png">
+<meta name="twitter:image:alt" content="The Kraftowy Kod logo, the slogan "Code slowly ageing in our heads" and handwritten code in a notebook with Copilot crossed out">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kraftowy Kod",
+  "url": "https://kraftowykod.pl/",
+  "logo": "https://kraftowykod.pl/apple-touch-icon.png",
+  "slogan": "Code slowly ageing in our heads.",
+  "description": "Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.",
+  "foundingDate": "2014"
+}
+</script>
 
 <!--
   Kraftowy Kod, English edition.
@@ -297,6 +393,8 @@
           <li class="font-body italic text-4xl">Netflix</li>
           <li class="font-rye text-3xl">Oracle</li>
           <li class="font-hand text-5xl">Intel</li>
+          <li class="font-rye text-3xl">Printu</li>
+          <li class="font-body italic font-semibold text-4xl">Patronite</li>
           <li class="font-body font-extrabold text-4xl tracking-tight" aria-hidden="true">Apple</li>
           <li class="font-rye text-3xl" aria-hidden="true">Microsoft</li>
           <li class="font-hand text-5xl" aria-hidden="true">Google</li>
@@ -309,6 +407,8 @@
           <li class="font-body italic text-4xl" aria-hidden="true">Netflix</li>
           <li class="font-rye text-3xl" aria-hidden="true">Oracle</li>
           <li class="font-hand text-5xl" aria-hidden="true">Intel</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Printu</li>
+          <li class="font-body italic font-semibold text-4xl" aria-hidden="true">Patronite</li>
         </ul>
       </div>
 

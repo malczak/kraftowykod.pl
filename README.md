@@ -10,6 +10,8 @@ The company doesn't exist. Neither do its three employees, Tadeusz, Zacheusz and
 |---|---|
 | `index.html` | Polish site (main version) |
 | `en/index.html` | English translation |
+| `og/` | Link preview images (two per language) and `generate.py`, which draws them |
+| `favicon.svg`, `apple-touch-icon.png` | The bottle-cap logo, for browser tabs and phone home screens |
 | `README.md` | This file, written by hand, obviously |
 
 Each language is a single HTML file containing three or four pages. A short script at the bottom switches between them using the part of the address after `#`.
@@ -43,9 +45,21 @@ There's also a private published copy at https://claude.ai/artifact/3jVeMTRGktKt
 - **Animations**: the scrolling ribbon and client strip, the "BEZ AI" stamp, and the code sample writing itself line by line. All of them switch off when the visitor's system is set to reduce motion.
 - **The page is a light-only design** on purpose. It doesn't switch to dark mode.
 
+## Link previews and SEO
+
+Each page has a description, a canonical URL, language alternates linking the Polish and English versions, Open Graph and Twitter card tags, and a small block of structured data describing the company. All URLs assume the site lives at `https://kraftowykod.pl`. If the domain changes, update the tags at the top of both HTML files.
+
+When the site is shared on Slack, Facebook, LinkedIn, X and similar, the preview shows `og/og-pl.png` (or `og/og-en.png`): the logo, the slogan and the handwritten code sample. A second image with part of the Anti-AI Manifesto is listed as an alternative, and some platforms use it.
+
+To change the images, edit the text in `og/generate.py` and run it. It needs `rsvg-convert` (`brew install librsvg`) and the macOS system fonts Rockwell, Georgia and Bradley Hand:
+
+```bash
+python3 og/generate.py
+```
+
 ## Search engines
 
-Both pages ask search engines and AI crawlers not to index, cache, preview or train on them (`noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai`). These tags are requests, so badly behaved bots can ignore them. If you host the site yourself, also add a `robots.txt` with `Disallow: /` and send an `X-Robots-Tag: noindex, noarchive` header from the server.
+Both pages ask search engines and AI crawlers not to index, cache, preview or train on them (`noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai`). These tags are requests, so badly behaved bots can ignore them. Because of them, the SEO tags above won't get the site ranked anywhere; they mainly make shared links look good. Link previews still work, since messaging apps fetch previews regardless of these tags. If you host the site yourself, also add a `robots.txt` with `Disallow: /` and send an `X-Robots-Tag: noindex, noarchive` header from the server.
 
 ## Hosting it yourself
 

@@ -1,14 +1,109 @@
-<title>Kraftowy Kod</title>
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kraftowy Kod | Ręcznie warzony software house, bez AI</title>
 
 <!-- roboty nie wchodzą. ani te od wyszukiwarek, ani te od AI. degustacja tylko dla ludzi -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, noai, noimageai">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
-<script>
-  // przenosimy meta tagi do <head>, bo tam roboty ich szukają. ręcznie, jak wszystko
-  document.querySelectorAll('meta[name="robots"], meta[name="googlebot"], meta[name="bingbot"]').forEach(function (tag) {
-    if (tag.parentNode !== document.head) document.head.appendChild(tag);
-  });
+
+<!-- SEO i Open Graph. wizytówka strony dla wyszukiwarek i komunikatorów.
+     każdy tag wpisany ręcznie, obrazki podglądu narysowane w og/generate.py -->
+
+<!--
+  OPEN GRAPH. KRONIKA WDROŻENIA, CZĘŚĆ DRUGA.
+
+  Tydzień 1, poniedziałek.
+    Klient wkleja nasz link na Slacku. Zamiast podglądu pokazuje się szary prostokąt
+    i napis „localhost”. Klient pyta, czy to celowe. Mówimy, że tak. Minimalizm.
+
+  Wtorek.
+    Tadeusz ustala, że „Open Graph” to baza grafowa. Zamawia książkę o Neo4j, 640 stron.
+
+  Środa.
+    Zacheusz twierdzi, że „OG” znaczy „original gangster” i strona musi być bardziej uliczna.
+    Mateusz dorysowuje kapslowi złoty łańcuch. Usunięty po code review, które trwało 6 tygodni.
+
+  Czwartek.
+    Ktoś po raz pierwszy czyta specyfikację. To są meta tagi. Zwykłe meta tagi.
+    Książka o Neo4j zostaje w firmie. Podpiera serwer pod biurkiem.
+
+  Piątek.
+    Wpisujemy og:image jako „obrazek.png”. Facebook odpowiada, że adres musi być bezwzględny.
+    Tadeusz odpisuje Facebookowi, że on też jest bezwzględny. Wymiana zdań trwa do 16:45, potem deploy.
+
+  Tydzień 2.
+    Obrazek ma mieć 1200 na 630 pikseli. Mateusz mierzy monitor linijką, wychodzi 31 cm.
+    Ustalamy, że piksel to jednostka umowna, tak jak termin.
+
+  Tydzień 3.
+    Podgląd na Facebooku dalej pokazuje starą wersję. Czyścimy cache. Stara wersja.
+    Czyścimy jeszcze raz. Stara wersja. Zacheusz degustuje cache i opisuje go jako
+    „uparty, z bardzo długim finiszem”. Nie naprawia niczego.
+
+  MOMENT AHA. Wtorek, 23:40, przy jednej świeczce.
+    Tadeusz patrzy na podgląd linku i mówi bardzo powoli: „Przecież to jest etykieta.”
+    Cisza. Wszyscy rozumieją naraz.
+    Komunikator nie pije piwa. Komunikator patrzy na etykietę.
+    Nikt nie kupi butelki, dopóki nie zobaczy etykiety, a my od 2014 roku
+    wysyłaliśmy ludziom gołe butelki. Dlatego mamy dwóch klientów. Z czego jednego dwa razy.
+    Mateusz płacze. Zacheusz opisuje łzy jako „słone, szczere, z nutą olśnienia”.
+
+  Drugi moment aha. Środa, 9:05, przy kawie.
+    Dodaliśmy SEO, żeby nas znaleźli. Kilka linijek wyżej zablokowaliśmy wszystkie roboty,
+    żeby nas nie znaleźli. Długa narada. Zostawiamy jedno i drugie:
+    komunikatory i tak wejdą po etykietę, roboty nie wejdą wcale. Etykieta jest dla ludzi.
+
+  Status: etykieta naklejona ręcznie, trzyma się. NIE RUSZAĆ.
+-->
+<meta name="description" content="Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.">
+<meta name="author" content="Kraftowy Kod">
+<meta name="theme-color" content="#3d5726">
+<link rel="canonical" href="https://kraftowykod.pl/">
+<link rel="alternate" hreflang="pl" href="https://kraftowykod.pl/">
+<link rel="alternate" hreflang="en" href="https://kraftowykod.pl/en/">
+<link rel="alternate" hreflang="x-default" href="https://kraftowykod.pl/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kraftowy Kod">
+<meta property="og:title" content="Kraftowy Kod: kod długo dojrzewający w naszych głowach">
+<meta property="og:description" content="Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.">
+<meta property="og:url" content="https://kraftowykod.pl/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:image" content="https://kraftowykod.pl/og/og-pl.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Kraftowego Kodu, hasło „Kod długo dojrzewający w naszych głowach” i ręcznie pisany kod w zeszycie z przekreślonym Copilotem">
+<meta property="og:image" content="https://kraftowykod.pl/og/og-pl-manifest.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fragment Manifestu przeciw AI z podpisami Tadeusza, Zacheusza i Mateusza">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kraftowy Kod: kod długo dojrzewający w naszych głowach">
+<meta name="twitter:description" content="Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.">
+<meta name="twitter:image" content="https://kraftowykod.pl/og/og-pl.png">
+<meta name="twitter:image:alt" content="Logo Kraftowego Kodu, hasło „Kod długo dojrzewający w naszych głowach” i ręcznie pisany kod w zeszycie z przekreślonym Copilotem">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kraftowy Kod",
+  "url": "https://kraftowykod.pl/",
+  "logo": "https://kraftowykod.pl/apple-touch-icon.png",
+  "slogan": "Kod długo dojrzewający w naszych głowach.",
+  "description": "Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.",
+  "foundingDate": "2014"
+}
 </script>
 
 <!--
@@ -55,9 +150,12 @@
     --hop: #3d5726;
     --pencil: #a3281c;
     color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   body {
+    margin: 0;
     background-color: var(--kraft);
     color: var(--ink);
     font-family: 'Bitter', Georgia, serif;
@@ -139,6 +237,8 @@
     .ribbon-track, .hand-line, .stamp { animation: none; }
   }
 </style>
+</head>
+<body>
 
 
 <!-- ===================== PASEK Z DOPISKAMI ===================== -->
@@ -294,6 +394,8 @@
           <li class="font-body italic text-4xl">Netflix</li>
           <li class="font-rye text-3xl">Oracle</li>
           <li class="font-hand text-5xl">Intel</li>
+          <li class="font-rye text-3xl">Printu</li>
+          <li class="font-body italic font-semibold text-4xl">Patronite</li>
           <li class="font-body font-extrabold text-4xl tracking-tight" aria-hidden="true">Apple</li>
           <li class="font-rye text-3xl" aria-hidden="true">Microsoft</li>
           <li class="font-hand text-5xl" aria-hidden="true">Google</li>
@@ -306,6 +408,8 @@
           <li class="font-body italic text-4xl" aria-hidden="true">Netflix</li>
           <li class="font-rye text-3xl" aria-hidden="true">Oracle</li>
           <li class="font-hand text-5xl" aria-hidden="true">Intel</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Printu</li>
+          <li class="font-body italic font-semibold text-4xl" aria-hidden="true">Patronite</li>
         </ul>
       </div>
 
@@ -1071,3 +1175,6 @@
       });
   });
 </script>
+
+</body>
+</html>
