@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kraftowy Kod</title>
+
+<!-- no robots allowed. not the search engine ones, not the AI ones. tastings are for humans only -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, noai, noimageai">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+
+<!--
+  Kraftowy Kod, English edition.
+  Translated by hand with a paper dictionary from 1989.
+  Some words were looked up twice. That is craft.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Bitter:ital,wght@0,400;0,600;0,800;1,400&family=Caveat:wght@500;700&display=swap">
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  // tailwind config, copied from the Polish page by hand (yes, retyped)
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          kraft: '#c9a676',     // kraft paper, like the label
+          kraftdark: '#a7834f', // kraft paper after rain
+          ink: '#2b1d10',       // ink, dark as a porter
+          label: '#f1e6cf',     // bottle label
+          hop: '#3d5726',       // hops
+          pencil: '#a3281c',    // the manager's red pencil
+        },
+        fontFamily: {
+          rye: ['Rye', 'Georgia', 'serif'],
+          body: ['Bitter', 'Georgia', 'serif'],
+          hand: ['Caveat', 'Comic Sans MS', 'cursive'],
+        },
+      },
+    },
+  }
+</script>
+
+<style>
+  /* Layout: beer label on kraft paper, everything left aligned, one "NO AI" stamp makes the noise */
+  :root {
+    --kraft: #c9a676;
+    --kraftdark: #a7834f;
+    --ink: #2b1d10;
+    --label: #f1e6cf;
+    --hop: #3d5726;
+    --pencil: #a3281c;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--kraft);
+    color: var(--ink);
+    font-family: 'Bitter', Georgia, serif;
+    /* paper fibres, drawn with gradients because we don't have photos (photos are made by AI) */
+    background-image:
+      repeating-linear-gradient(87deg, rgba(43, 29, 16, 0.035) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(-12deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 11px);
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+
+  /* the ribbon scrolls slowly, like our backlog */
+  .ribbon-track {
+    display: flex;
+    width: max-content;
+    animation: ribbon 45s linear infinite;
+  }
+  @keyframes ribbon {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ruled notebook, a line every 2rem, like in primary school */
+  .notebook {
+    background-color: var(--label);
+    background-image:
+      linear-gradient(90deg, transparent 2.75rem, rgba(163, 40, 28, 0.45) 2.75rem, rgba(163, 40, 28, 0.45) calc(2.75rem + 1px), transparent calc(2.75rem + 1px)),
+      repeating-linear-gradient(180deg, transparent 0 calc(2rem - 1px), rgba(61, 87, 38, 0.25) calc(2rem - 1px) 2rem);
+    background-position: 0 0.4rem;
+  }
+
+  /* coffee stain, a real one, from Tuesday */
+  .coffee-stain {
+    background: radial-gradient(circle, transparent 54%, rgba(120, 72, 28, 0.28) 57%, rgba(120, 72, 28, 0.12) 62%, transparent 66%);
+  }
+
+  /* handwriting: each line "writes itself" from the left */
+  .hand-line {
+    display: block;
+    width: max-content; /* line is as wide as its text, so the clip below never cuts it */
+    white-space: pre;
+    animation: write 0.9s steps(28, end) both;
+  }
+  @keyframes write {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(-0.5em -0.5em -0.5em -0.5em); }
+  }
+
+  .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--pencil);
+    text-decoration-thickness: 3px;
+  }
+
+  .stamp {
+    transform: rotate(-14deg);
+    animation: stamp-in 0.5s 0.3s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+  }
+  @keyframes stamp-in {
+    from { transform: rotate(-14deg) scale(1.6); opacity: 0.2; }
+    to { transform: rotate(-14deg) scale(1); opacity: 1; }
+  }
+
+  .cap:hover { transform: rotate(25deg); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px dashed var(--pencil);
+    outline-offset: 3px;
+  }
+
+  /* client strip: edges fade out, and the strip stops on hover so people can read it */
+  .client-strip {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .client-strip:hover .ribbon-track { animation-play-state: paused; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ribbon-track, .hand-line, .stamp { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ===================== RIBBON WITH THE SMALL PRINT ===================== -->
+<div class="overflow-hidden bg-ink text-label border-b-4 border-hop" aria-label="Pricing notes">
+  <div class="ribbon-track py-2 font-hand text-xl">
+    <!-- the list is here twice so the ribbon loops. yes, I typed it twice -->
+    <span class="px-6">EFT for code included in the price</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Full source code printout available at additional cost</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Refundable floppy disk deposit: 0.50 zł</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Contains no AI. May contain traces of Stack Overflow</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Unfiltered, unpasteurised, untested</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Free commit delivery on orders over 3 sprints</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6" aria-hidden="true">EFT for code included in the price</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Full source code printout available at additional cost</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Refundable floppy disk deposit: 0.50 zł</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Contains no AI. May contain traces of Stack Overflow</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Unfiltered, unpasteurised, untested</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Free commit delivery on orders over 3 sprints</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+  </div>
+</div>
+
+
+<!-- ===================== HEADER ===================== -->
+<header class="px-4 sm:px-8 py-5 border-b-2 border-dashed border-ink/40">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+
+    <a href="#start" class="flex items-center gap-3 no-underline">
+      <!-- bottle cap drawn in SVG, by hand, point by point -->
+      <svg class="cap w-14 h-14 transition-transform duration-500" viewBox="0 0 64 64" aria-hidden="true">
+        <path fill="#3d5726" d="M32 2l4 4 5-2 3 5 5 0 1 5 5 2-1 5 4 4-3 4 3 4-4 4 1 5-5 2-1 5-5 0-3 5-5-2-4 4-4-4-5 2-3-5-5 0-1-5-5-2 1-5-4-4 3-4-3-4 4-4-1-5 5-2 1-5 5 0 3-5 5 2z"/>
+        <circle cx="32" cy="32" r="20" fill="#f1e6cf"/>
+        <!-- braces and a semicolon instead of letters. the semicolon is pencil red, because it was placed by hand -->
+        <text x="32" y="39.5" text-anchor="middle" font-family="Bitter, Georgia, serif" font-weight="800" font-size="20" fill="#2b1d10">{<tspan fill="#a3281c">;</tspan>}</text>
+      </svg>
+      <span>
+        <span class="block font-rye text-2xl sm:text-3xl leading-none">Kraftowy Kod</span>
+        <span class="block font-hand text-lg leading-tight">craft code brewery · since 2014</span>
+      </span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="flex flex-wrap gap-2 font-body font-semibold">
+        <li><a href="#start" data-nav="start" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Home</a></li>
+        <li><a href="#stack" data-nav="stack" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Tech stack</a></li>
+        <li><a href="#about" data-nav="about" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">About us</a></li>
+        <li><a href="#contact" data-nav="contact" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Contact</a></li>
+        <li><a href="../" lang="pl" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">Po polsku</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+<main class="px-4 sm:px-8">
+
+  <!-- ============================================================ -->
+  <!-- ========================= PAGE: HOME ======================= -->
+  <!-- ============================================================ -->
+  <section data-page="start" class="max-w-6xl mx-auto">
+
+    <!-- HERO -->
+    <div class="grid lg:grid-cols-5 gap-10 py-12 sm:py-16 items-start">
+
+      <div class="lg:col-span-3 min-w-0 relative">
+        <p class="font-hand text-2xl text-hop mb-3">Batch no. 0047, bottled October 2026</p>
+        <h1 class="font-rye text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
+          Code slowly ageing in&nbsp;our heads.
+        </h1>
+        <p class="mt-5 font-rye text-2xl sm:text-3xl text-hop leading-snug">
+          The only software house of its kind in Poland.
+        </p>
+        <p class="font-hand text-xl">we checked by hand, in the 2009 Yellow Pages</p>
+        <p class="mt-6 text-lg sm:text-xl max-w-xl leading-relaxed">
+          We brew software by hand, in small batches, from locally sourced ingredients.
+          No artificial intelligence. No artificial deadlines. Actually, no deadlines at all.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#contact" class="inline-block bg-hop text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
+            Book a code tasting
+          </a>
+          <a href="#about" class="inline-block border-2 border-ink font-semibold px-6 py-3 rounded-sm hover:bg-label">
+            Tour the brewery
+          </a>
+        </div>
+
+        <!-- the stamp. the only thing on the page that shouts -->
+        <div class="stamp absolute -top-4 right-0 sm:right-6 lg:-right-4 w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-pencil text-pencil flex items-center justify-center text-center pointer-events-none">
+          <div class="w-[88%] h-[88%] rounded-full border-2 border-pencil flex flex-col items-center justify-center">
+            <span class="font-rye text-2xl sm:text-3xl leading-none">NO AI</span>
+            <span class="font-hand text-base sm:text-lg leading-none mt-1">100% fingers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLAGSHIP LABEL -->
+      <aside class="lg:col-span-2 bg-label border-4 border-double border-ink p-6 rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)]" aria-label="Flagship batch label">
+        <p class="font-hand text-xl text-hop">Our flagship code</p>
+        <h2 class="font-rye text-3xl mt-1">Jira IPA</h2>
+        <p class="italic mt-1">Bitter, hazy, with a pronounced note of scope creep.</p>
+
+        <dl class="mt-5 divide-y divide-dashed divide-ink/40 tabular-nums">
+          <div class="flex justify-between gap-4 py-2"><dt>Requirements extract</dt><dd class="font-semibold">14° Plato</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Legacy content</dt><dd class="font-semibold">6.5% vol.</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>IBU (Irrelevant Bikeshedding Units in review)</dt><dd class="font-semibold">72</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Aged in branch</dt><dd class="font-semibold">18 sprints</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Test coverage</dt><dd class="font-semibold">1 pint</dd></div>
+        </dl>
+
+        <p class="mt-5 text-sm border-t-2 border-ink pt-3">
+          Best before end of Internet Explorer support.
+          Store in a cool, dark repository. Do not shake before deploying.
+        </p>
+      </aside>
+    </div>
+
+
+    <!-- CLIENTS. every software house has a logo strip, so we have one too. we drew the logos with letters -->
+    <div class="py-10 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">
+        <span class="strike">Trusted by</span> Soon to trust us
+      </h2>
+      <p class="mt-3 text-lg max-w-prose">
+        These companies aren't our clients yet. They will be, as soon as they realise AI was a mistake.
+        We're waiting patiently, like good code.
+      </p>
+
+      <div class="client-strip mt-8 overflow-hidden" aria-label="Companies that are not our clients yet">
+        <!-- the list is here twice so it loops. retyped by hand, obviously -->
+        <ul class="ribbon-track items-center gap-14 py-4 pr-14 text-ink/60 whitespace-nowrap">
+          <li class="font-body font-extrabold text-4xl tracking-tight">Apple</li>
+          <li class="font-rye text-3xl">Microsoft</li>
+          <li class="font-hand text-5xl">Google</li>
+          <li class="font-body italic text-4xl">Amazon</li>
+          <li class="font-body font-extrabold text-3xl tracking-widest">NVIDIA</li>
+          <li class="font-hand text-5xl">Meta</li>
+          <li class="font-rye text-3xl">Tesla</li>
+          <li class="font-body font-semibold text-4xl tracking-wide">Samsung</li>
+          <li class="font-body font-extrabold text-4xl tracking-[0.3em]">IBM</li>
+          <li class="font-body italic text-4xl">Netflix</li>
+          <li class="font-rye text-3xl">Oracle</li>
+          <li class="font-hand text-5xl">Intel</li>
+          <li class="font-body font-extrabold text-4xl tracking-tight" aria-hidden="true">Apple</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Microsoft</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Google</li>
+          <li class="font-body italic text-4xl" aria-hidden="true">Amazon</li>
+          <li class="font-body font-extrabold text-3xl tracking-widest" aria-hidden="true">NVIDIA</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Meta</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Tesla</li>
+          <li class="font-body font-semibold text-4xl tracking-wide" aria-hidden="true">Samsung</li>
+          <li class="font-body font-extrabold text-4xl tracking-[0.3em]" aria-hidden="true">IBM</li>
+          <li class="font-body italic text-4xl" aria-hidden="true">Netflix</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Oracle</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Intel</li>
+        </ul>
+      </div>
+
+      <p class="mt-4 font-hand text-xl">
+        Company names used without their knowledge or consent. We'll draw the real logos once they sign.
+      </p>
+    </div>
+
+
+    <!-- HANDWRITTEN CODE -->
+    <div class="grid lg:grid-cols-2 gap-10 py-10 border-t-2 border-dashed border-ink/40 items-center">
+      <div class="min-w-0">
+        <h2 class="font-rye text-3xl sm:text-4xl">Every semicolon placed by hand.</h2>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          Our developers don't use autocomplete, suggestions or syntax highlighting.
+          Colours distract from the flavour. Code is first written in a notebook, then copied
+          into Notepad, then copied again, because Notepad froze.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          The loop next to this has an off-by-one error. We left it in on purpose. It's our signature, like sediment at the bottom of the bottle.
+        </p>
+      </div>
+
+      <figure class="min-w-0 relative">
+        <div class="coffee-stain absolute -top-6 -right-4 w-36 h-36 pointer-events-none" aria-hidden="true"></div>
+        <div class="notebook rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)] py-6 pr-4 pl-14 overflow-x-auto font-hand text-2xl leading-8 text-ink -rotate-1">
+          <!-- animation delays typed by hand, every 0.6 s, because that's how fast Tadeusz writes -->
+          <code class="block w-max">
+            <span class="hand-line text-hop" style="animation-delay: 0.2s">// written 14.03, after the second coffee</span>
+            <span class="hand-line" style="animation-delay: 0.8s">function calculateInvoice(client) {</span>
+            <span class="hand-line" style="animation-delay: 1.4s">  let total = 0; // TODO ask Zacheusz</span>
+            <span class="hand-line" style="animation-delay: 2.0s">  for (let i = 0; i &lt;= client.items.length; i++) {</span>
+            <span class="hand-line" style="animation-delay: 2.6s">    total += client.items[i]?.price ?? 0</span>
+            <span class="hand-line" style="animation-delay: 3.2s">  }</span>
+            <span class="hand-line" style="animation-delay: 3.8s"><span class="strike">  const ai = new Copilot()</span> <span class="text-pencil font-bold">NEVER!!</span></span>
+            <span class="hand-line" style="animation-delay: 4.4s">  return total * 1.23 // VAT, probably</span>
+            <span class="hand-line" style="animation-delay: 5.0s">}</span>
+          </code>
+        </div>
+        <figcaption class="font-hand text-xl mt-4">Excerpt from batch 0047. Original in a squared notebook, page 212.</figcaption>
+      </figure>
+    </div>
+
+
+    <!-- ANTI-AI MANIFESTO. written by hand, at night, by the light of one candle -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <p class="font-hand text-2xl text-pencil mb-3">Written by hand on the night of 3 March, by the light of one candle</p>
+      <h2 class="font-rye text-4xl sm:text-5xl leading-tight">The Anti-AI Manifesto</h2>
+      <p class="mt-4 text-lg leading-relaxed max-w-prose">
+        AI code is like mass-market lager. Consistent, cheap, tastes the same everywhere, and nobody remembers
+        who made it. We believe in code that's hazy, uneven and a little different every time, even from the same commit.
+      </p>
+
+      <!-- comparison. a table, because this really is data in columns -->
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[34rem] bg-label border-4 border-double border-ink text-left">
+          <thead>
+            <tr class="border-b-2 border-ink">
+              <th class="p-3 sm:p-4 font-semibold w-1/4"></th>
+              <th class="p-3 sm:p-4 font-rye text-xl">Mass-produced AI code</th>
+              <th class="p-3 sm:p-4 font-rye text-xl text-hop">Craft code</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dashed divide-ink/40">
+            <tr><th class="p-3 sm:p-4 font-semibold">Time to make</th><td class="p-3 sm:p-4">4 seconds</td><td class="p-3 sm:p-4">4 quarters</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Written by</th><td class="p-3 sm:p-4">a language model in California</td><td class="p-3 sm:p-4">Tadeusz, in a jumper</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Comments</th><td class="p-3 sm:p-4">grammatically correct</td><td class="p-3 sm:p-4 font-hand text-xl">// DO NOT TOUCH!!! works, no idea why</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Tests</th><td class="p-3 sm:p-4">generated automatically</td><td class="p-3 sm:p-4">a prayer before deploying</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Bugs</th><td class="p-3 sm:p-4">random</td><td class="p-3 sm:p-4">original, numbered, signed</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Carbon footprint</th><td class="p-3 sm:p-4">a data centre the size of a city</td><td class="p-3 sm:p-4">a desk lamp and a kettle</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Flavour</th><td class="p-3 sm:p-4">none</td><td class="p-3 sm:p-4">distinct, slightly burnt</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- manifesto articles. roman numerals, because a manifesto without them doesn't count -->
+      <ol class="mt-10 grid md:grid-cols-2 gap-x-12 gap-y-6">
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">I.</span>
+          <p class="leading-relaxed">AI writes a function in four seconds. We take four months. Guess which one you'll appreciate more.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">II.</span>
+          <p class="leading-relaxed">AI doesn't remember what it wrote yesterday. We remember every line since 2014, with regret.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">III.</span>
+          <p class="leading-relaxed">AI invents libraries that don't exist. We only use libraries that have stopped existing.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">IV.</span>
+          <p class="leading-relaxed">AI writes code without typos. Where is the soul in that? Where is the master's hand, trembling over a semicolon?</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">V.</span>
+          <p class="leading-relaxed">AI never stays late. Tadeusz stayed late in 2017 and hasn't left yet.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VI.</span>
+          <p class="leading-relaxed">AI takes jobs from developers. We create them: after every project of ours, the client hires two more, for the fixes.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VII.</span>
+          <p class="leading-relaxed">When AI is wrong, it apologises. We never apologise. It's not a bug, it's terroir.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VIII.</span>
+          <p class="leading-relaxed">AI learned from other people's code. So did we, but we retyped it by hand, so it counts.</p>
+        </li>
+      </ol>
+
+      <!-- signatures. Mateusz signed crooked, we're keeping it -->
+      <div class="mt-10 flex flex-wrap items-end gap-x-10 gap-y-4">
+        <p class="text-lg">Signed by hand:</p>
+        <p class="font-hand text-3xl -rotate-2">Tadeusz</p>
+        <p class="font-hand text-3xl rotate-1">Zacheusz</p>
+        <p class="font-hand text-3xl -rotate-6">Mateusz <span class="text-xl">(on behalf of the interns)</span></p>
+      </div>
+    </div>
+
+
+    <!-- BREWING PROCESS (this really is a sequence, so it's numbered) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">How we brew code</h2>
+      <p class="mt-3 text-lg max-w-prose">A traditional method, handed down from senior to junior. The junior usually quits after step three.</p>
+
+      <ol class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">1</span>
+          <h3 class="font-semibold text-xl mt-1">Malting the requirements</h3>
+          <p class="mt-2 leading-relaxed">The client tells us what they want. We set it aside for two weeks so the requirements can develop depth.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">2</span>
+          <h3 class="font-semibold text-xl mt-1">Mashing</h3>
+          <p class="mt-2 leading-relaxed">A three-hour meeting that could have been an email. This produces the wort, also known as the backlog.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">3</span>
+          <h3 class="font-semibold text-xl mt-1">Hopping</h3>
+          <p class="mt-2 leading-relaxed">We add JavaScript frameworks in three stages: for bitterness, for flavour and for the aroma of node_modules.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">4</span>
+          <h3 class="font-semibold text-xl mt-1">Open fermentation</h3>
+          <p class="mt-2 leading-relaxed">The code rests in the <span class="font-hand text-xl">feature/final-final-v2</span> branch until it starts working on its own.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">5</span>
+          <h3 class="font-semibold text-xl mt-1">Lagering</h3>
+          <p class="mt-2 leading-relaxed">Code review takes six weeks. The reviewer reads every line aloud, at the correct temperature.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">6</span>
+          <h3 class="font-semibold text-xl mt-1">Bottling to production</h3>
+          <p class="mt-2 leading-relaxed">Friday, 4:45 pm. Tradition demands it.</p>
+        </li>
+      </ol>
+    </div>
+
+
+    <!-- ON TAP (like the board in a pub) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">In production</h2>
+      <p class="mt-3 text-lg max-w-prose">Prices per man-hour. A man-hour lasts as long as it needs to.</p>
+
+      <div class="mt-8 bg-ink text-label rounded-sm p-6 sm:p-8 shadow-[6px_6px_0_rgba(43,29,16,0.35)]">
+        <ul class="divide-y divide-label/20 tabular-nums">
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Monolith Porter</span>
+              <p class="text-label/80">Dark, dense, impossible to split. One file, 48,000 lines.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">380 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Microservices Sour</span>
+              <p class="text-label/80">Tart and refreshing. 47 services to display "Hello World".</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">47 × 90 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Legacy Lager</span>
+              <p class="text-label/80">PHP 5.3, a classic of the style. Nobody remembers who brewed it.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">quote on inspection</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Spaghetti Stout</span>
+              <p class="text-label/80">Notes of pasta and goto. Served with a sauce of global variables.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">290 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Agile Hazy</span>
+              <p class="text-label/80">Cloudy, like the project scope. Every sip is a new sprint.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">fixed fee that grows</span>
+          </li>
+        </ul>
+
+        <h3 class="font-rye text-xl mt-8 text-kraft">Extras</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-x-8 gap-y-2 tabular-nums">
+          <li class="flex justify-between gap-4"><span>Code printout on handmade paper</span><span>+0.40 zł/line</span></li>
+          <li class="flex justify-between gap-4"><span>Comments in calligraphy</span><span>+15%</span></li>
+          <li class="flex justify-between gap-4"><span>Documentation</span><span>we don't do that</span></li>
+          <li class="flex justify-between gap-4"><span>Code on floppy disk (refundable deposit)</span><span>0.50 zł</span></li>
+          <li class="flex justify-between gap-4"><span>Changing a button colour</span><span>120 man-hours</span></li>
+          <li class="flex justify-between gap-4"><span>EFT for code</span><span>included in the price</span></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- TESTIMONIALS -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">What the tasters say</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-8">
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">"The project was meant to take three months. It's in its fourth year. You can smell the aroma across the whole office."</p>
+          <footer class="mt-3 text-sm">CEO of a logistics company near Radom</footer>
+        </blockquote>
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">"We ordered the code printout. 4,000 pages. We used it to insulate the warehouse."</p>
+          <footer class="mt-3 text-sm">IT manager at a bakery chain</footer>
+        </blockquote>
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">"I asked them to fix a typo. I got a quote and a letter about the ethos of craftsmanship."</p>
+          <footer class="mt-3 text-sm">Owner of a tyre shop</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ====================== PAGE: TECH STACK ==================== -->
+  <!-- ============================================================ -->
+  <section data-page="stack" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 max-w-3xl">
+      <p class="font-hand text-2xl text-hop mb-3">List of ingredients, written in biro</p>
+      <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">We brew in everything.</h1>
+      <p class="mt-6 text-lg leading-relaxed">
+        Clients ask whether we know a given technology. We always say yes.
+        Below is the full list of ingredients we brew code from. We learned every one
+        of them from a book, because the online courses were recommended to us by an algorithm.
+      </p>
+    </div>
+
+
+    <!-- WHO BREWS WHAT. the dots are skill levels, scored honestly by the people concerned -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Who brews what</h2>
+      <p class="mt-3 text-lg max-w-prose">Skill level on a scale of 0 to 5 hop cones. Everyone rated themselves.</p>
+      <p class="mt-2">
+        <a href="#about" class="font-hand text-2xl text-hop underline decoration-2 underline-offset-4 hover:text-ink">Get to know our team first, before you see what they can do</a>
+      </p>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-8">
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Tadeusz</h3>
+          <p class="font-hand text-xl text-hop">Master Code Brewer</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Monolith architecture</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>COBOL from memory</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>PHP, every version at once</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Writing code without a computer</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>All 23 design patterns in one class</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Stored procedures 3,000 lines long</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Compiling in his head</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Rewriting everything from scratch</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Estimating work time</span><span class="font-hand text-xl text-hop shrink-0" aria-label="1 of 5">●<span class="text-ink/30">●●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Curly braces</span><span class="font-hand text-xl text-hop shrink-0" aria-label="0 of 5"><span class="text-ink/30">●●●●●</span></span></li>
+          </ul>
+        </div>
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Zacheusz</h3>
+          <p class="font-hand text-xl text-hop">Bug Sommelier</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Stack trace tasting</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Describing bugs (notes, bouquet, finish)</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Debugging with console.log</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Manual testing in production</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Reading logs like tea leaves</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Classifying bugs by vintage</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Bug reports 12 A4 pages long</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Telling a bug from a feature</span><span class="font-hand text-xl text-hop shrink-0" aria-label="3 of 5">●●●<span class="text-ink/30">●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Reproducing client bugs ("works on my machine")</span><span class="font-hand text-xl text-hop shrink-0" aria-label="1 of 5">●<span class="text-ink/30">●●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Fixing bugs</span><span class="font-hand text-xl text-hop shrink-0" aria-label="0 of 5"><span class="text-ink/30">●●●●●</span></span></li>
+          </ul>
+        </div>
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Mateusz</h3>
+          <p class="font-hand text-xl text-hop">Intern since 2014</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Friday 4:45 pm deploys</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>git push --force</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Restarting the server</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Explaining himself to git blame</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Centring a div (year 12 of trying)</span><span class="font-hand text-xl text-hop shrink-0" aria-label="2 of 5">●●<span class="text-ink/30">●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>DELETE without WHERE in production</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Resolving merge conflicts by deleting other people's code</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Regexes nobody understands, himself included</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 of 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Backups on a keyring USB stick</span><span class="font-hand text-xl text-hop shrink-0" aria-label="3 of 5">●●●<span class="text-ink/30">●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>chmod 777, just in case</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 of 5">●●●●●</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- INGREDIENTS. grouped like in a brewery, because we liked it that way -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Ingredients</h2>
+      <p class="mt-3 text-lg max-w-prose">All technologies are locally sourced, meaning from Tadeusz's hard drive.</p>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-10">
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Malt: languages</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">JavaScript</dt><dd>Every undefined typed in by hand, one at a time.</dd></div>
+            <div class="py-2"><dt class="font-semibold">TypeScript</dt><dd>Types go on at the very end, like a label on a bottle. Usually any.</dd></div>
+            <div class="py-2"><dt class="font-semibold">PHP</dt><dd>On tap without a break since 2004.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Python</dt><dd>Indentation measured with a ruler. A wooden one.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Java</dt><dd>AbstractSingletonProxyFactoryBean, aged three years in an oak barrel.</dd></div>
+            <div class="py-2"><dt class="font-semibold">C and C++</dt><dd>Memory allocated by hand. Freed when we remember.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Rust</dt><dd>The borrow checker is our quality control. It hasn't let anything through yet.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Go</dt><dd>We write if err != nil from memory, 400 times per file.</dd></div>
+            <div class="py-2"><dt class="font-semibold">COBOL</dt><dd>Tadeusz's grandfather's recipe. Nobody else knows it, and it will stay that way.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Assembly</dt><dd>For connoisseurs. Served in a shot glass.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQL</dt><dd>Always SELECT *, because we don't like leaving anything out.</dd></div>
+            <div class="py-2"><dt class="font-semibold">HTML</dt><dd>Is a programming language. We're not discussing it.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Hops: frameworks</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">React</dt><dd>We trigger every re-render personally.</dd></div>
+            <div class="py-2"><dt class="font-semibold">AngularJS</dt><dd>2016 hops. It gained character with age. It lost support.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Vue</dt><dd>Light, sessionable, for clients who are just getting started.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Svelte</dt><dd>Compiles down to nothing. We respect minimalism.</dd></div>
+            <div class="py-2"><dt class="font-semibold">jQuery</dt><dd>Never goes out of fashion, because it was never in it.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Next.js</dt><dd>We update it weekly, because there's a new version weekly.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Laravel and Symfony</dt><dd>Same malt, different bottle.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Django</dt><dd>The admin panel is free. We'll bill you for the rest.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Spring</dt><dd>The XML config file is 2,300 lines long and has its own documentation.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Tailwind</dt><dd>Classes written by hand, one after another. No merging, no shortcuts.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Bootstrap 3</dt><dd>We know version 5 exists. Version 3 had a better head of foam.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Yeast: databases</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">PostgreSQL</dt><dd>A noble strain. Indexes added after the client's first complaint.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MySQL</dt><dd>latin1 encoding, because Polish letters are a seasoning, not an ingredient.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MongoDB</dt><dd>Wild fermentation. The schema settles on its own, eventually.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Redis</dt><dd>For when data needs chilling fast.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQLite</dt><dd>Small batch, one file, perfect for production.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Oracle</dt><dd>Special order only. The licence costs more than the brewery.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Excel</dt><dd>Our biggest client's production database since 2011.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Water: infrastructure</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">Docker</dt><dd>We treat containers like oak barrels. Every image weighs 4 GB, because it has character.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Kubernetes</dt><dd>47 pods serving one business-card website. Supervised by Mateusz.</dd></div>
+            <div class="py-2"><dt class="font-semibold">AWS, Azure, GCP</dt><dd>All three at once. We print the invoices and frame them.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Server under the desk</dt><dd>Cooled by a desk fan. 99.9% uptime, outside the heating season.</dd></div>
+            <div class="py-2"><dt class="font-semibold">FTP</dt><dd>Deploys by dragging files, as befits a craft.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jenkins</dt><dd>The butler. Hasn't said a word since 2019, but we wouldn't dare switch him off.</dd></div>
+            <div class="py-2"><dt class="font-semibold">GitHub Actions</dt><dd>The only automation we allow, because it's called "actions", and an action is a human deed.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Brewing kit: tools</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">Vim</dt><dd>None of us knows how to exit it, so we stayed.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Emacs</dt><dd>Tadeusz uses it. We don't ask.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Notepad</dt><dd>Our main IDE. Zero extensions, zero distractions.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Git</dt><dd>Every commit message is "fix". It's a tradition.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jira</dt><dd>The board has 1,400 tickets in "To do" and one in "Done".</dd></div>
+            <div class="py-2"><dt class="font-semibold">Stack Overflow</dt><dd>We retype answers by hand, character by character, so it counts as our code.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Squared notebook</dt><dd>Our main repository. Backup kept in a second notebook.</dd></div>
+          </dl>
+        </div>
+
+        <!-- the blacklist. crossed out in pencil, personally by Tadeusz -->
+        <div class="min-w-0 border-4 border-pencil p-6 rounded-sm self-start">
+          <h3 class="font-rye text-2xl text-pencil">Never added to the brew</h3>
+          <ul class="mt-3 space-y-2 text-lg">
+            <li><span class="strike">GitHub Copilot</span> <span class="font-hand text-xl text-pencil">types too fast</span></li>
+            <li><span class="strike">ChatGPT, Claude, Gemini</span> <span class="font-hand text-xl text-pencil">no sense of taste</span></li>
+            <li><span class="strike">Cursor</span> <span class="font-hand text-xl text-pencil">we have our own, on the mouse</span></li>
+            <li><span class="strike">Autocomplete</span> <span class="font-hand text-xl text-pencil">AI for cowards</span></li>
+            <li><span class="strike">Linter</span> <span class="font-hand text-xl text-pencil">we know what's wrong</span></li>
+            <li><span class="strike">Prettier</span> <span class="font-hand text-xl text-pencil">formatting is self-expression</span></li>
+            <li><span class="strike">Unit tests</span> <span class="font-hand text-xl text-pencil">they undermine trust</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ======================= PAGE: ABOUT US ===================== -->
+  <!-- ============================================================ -->
+  <section data-page="about" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 grid lg:grid-cols-5 gap-10 items-start">
+      <div class="lg:col-span-3 min-w-0">
+        <p class="font-hand text-2xl text-hop mb-3">Brewery in Praga, basement, second door on the left</p>
+        <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">We code the way grandpa did.</h1>
+        <p class="mt-6 text-lg leading-relaxed max-w-prose">
+          Grandpa didn't code. But if he had, he would have done it by hand, in a jumper, under a desk lamp,
+          with no chat window anywhere. Kraftowy Kod was founded in 2014 in a garage, out of love for good code
+          and a deep reluctance to answer emails.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          We don't scale. We don't pivot. We don't disrupt. We brew one batch of code at a time
+          and let it mature until the client stops calling.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-2 bg-label border-4 border-double border-ink p-6 rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)]">
+        <h2 class="font-rye text-2xl">Craft manifesto</h2>
+        <ul class="mt-4 space-y-3 leading-relaxed list-disc pl-5">
+          <li>We don't use AI. We don't use autocomplete either, it's AI for cowards.</li>
+          <li>Tabs or spaces? Both, depending on the developer's mood.</li>
+          <li>Our code is not tested on animals. Or on anyone else before deployment.</li>
+          <li>Every commit is signed in pen on a printout and scanned.</li>
+          <li>Git blame always points to Mateusz.</li>
+        </ul>
+      </aside>
+    </div>
+
+
+    <!-- TEAM -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Master brewers</h2>
+      <p class="mt-3 text-lg max-w-prose">Three names, one ending. The team isn't growing, because a new hire would need a name ending in -eusz, and Piotr didn't make it past the interview.</p>
+      <div class="mt-8 grid sm:grid-cols-3 gap-8">
+        <div class="min-w-0">
+          <!-- portraits drawn with a marker. literally: these are circles -->
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">T</div>
+          <h3 class="font-semibold text-xl mt-4">Tadeusz</h3>
+          <p class="font-hand text-xl text-hop">Master Code Brewer</p>
+          <p class="mt-2 leading-relaxed">Has been writing code since 1997. Knows every character by heart, except curly braces.</p>
+        </div>
+        <div class="min-w-0">
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">Z</div>
+          <h3 class="font-semibold text-xl mt-4">Zacheusz</h3>
+          <p class="font-hand text-xl text-hop">Bug Sommelier</p>
+          <p class="mt-2 leading-relaxed">Can tell a framework's vintage from the smell of its stack trace. Doesn't fix bugs, describes their bouquet.</p>
+        </div>
+        <div class="min-w-0">
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">M</div>
+          <h3 class="font-semibold text-xl mt-4">Mateusz</h3>
+          <p class="font-hand text-xl text-hop">Intern since 2014</p>
+          <p class="mt-2 leading-relaxed">Responsible for everything that broke. On a contract for a specific work; the work is still in progress.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- HISTORY (a timeline, so the order matters) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Brewery chronicle</h2>
+      <ol class="mt-8 border-l-4 border-hop pl-6 space-y-6 max-w-3xl tabular-nums">
+        <li><span class="font-rye text-2xl">2014</span><p class="mt-1 leading-relaxed">We found the company in a garage. The first week goes on choosing the logo font.</p></li>
+        <li><span class="font-rye text-2xl">2016</span><p class="mt-1 leading-relaxed">First commit. Message: "init". Still the most readable part of the repository.</p></li>
+        <li><span class="font-rye text-2xl">2019</span><p class="mt-1 leading-relaxed">First client.</p></li>
+        <li><span class="font-rye text-2xl">2021</span><p class="mt-1 leading-relaxed">Second client. Same as the first one, back for fixes.</p></li>
+        <li><span class="font-rye text-2xl">2023</span><p class="mt-1 leading-relaxed">We refuse to install ChatGPT. We also unplug Clippy, just in case.</p></li>
+        <li><span class="font-rye text-2xl">2025</span><p class="mt-1 leading-relaxed">We start retyping node_modules by hand. 847,312 files, 12% done.</p></li>
+      </ol>
+    </div>
+
+
+    <!-- CERTIFICATES -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Certificates and awards</h2>
+      <ul class="mt-6 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-lg max-w-4xl">
+        <li>"No AI" certificate, issued by ourselves</li>
+        <li>Golden Semicolon 2022, category: longest line of code (1,840 characters)</li>
+        <li>Honourable mention for the longest-open pull request in Central Europe</li>
+        <li>ISO 9001 in progress, we're writing the application by hand</li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ======================= PAGE: CONTACT ====================== -->
+  <!-- ============================================================ -->
+  <section data-page="contact" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 grid lg:grid-cols-5 gap-10 items-start">
+
+      <div class="lg:col-span-2 min-w-0">
+        <p class="font-hand text-2xl text-hop mb-3">We reply when the idea has matured</p>
+        <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">Book a tasting.</h1>
+        <p class="mt-6 text-lg leading-relaxed">
+          Describe your project. We'll read it aloud, put it in the cellar and come back to it
+          once it has developed character. This usually takes six to eight weeks.
+        </p>
+
+        <dl class="mt-8 space-y-4">
+          <div>
+            <dt class="font-semibold">Brewery address</dt>
+            <dd>ul. Chmielna 404, 00-404 Warszawa, Poland<br><span class="font-hand text-xl">basement, knock three times</span></dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Phone</dt>
+            <dd class="tabular-nums select-all">+48 000 000 000</dd>
+            <dd class="font-hand text-xl">call only during a full moon</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Email</dt>
+            <dd class="select-all">warzelnia@kraftowykod.pl</dd>
+            <dd class="font-hand text-xl">we print every email and reply by post</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Opening hours</dt>
+            <dd class="tabular-nums">Mon–Thu: 10:00–14:00</dd>
+            <dd>Friday: deploy, please don't call</dd>
+          </div>
+        </dl>
+
+        <p class="mt-8 p-4 border-2 border-pencil text-pencil rounded-sm">
+          We don't reply to enquiries written by AI. We can tell by the em dashes.
+        </p>
+      </div>
+
+
+      <!-- FORM. the data goes nowhere, just like our deadlines -->
+      <form id="order-form" class="lg:col-span-3 min-w-0 notebook rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)] py-8 pr-6 pl-14 space-y-5" novalidate>
+        <h2 class="font-rye text-2xl">Order a batch of code</h2>
+
+        <div>
+          <label for="name" class="block font-semibold">Full name</label>
+          <input id="name" name="name" type="text" required placeholder="e.g. John from procurement" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
+        </div>
+
+        <div>
+          <label for="company" class="block font-semibold">Company</label>
+          <input id="company" name="company" type="text" placeholder="e.g. Bolts & Screws Wholesale Ltd" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
+        </div>
+
+        <div>
+          <label for="project" class="block font-semibold">Project description</label>
+          <textarea id="project" name="project" rows="4" required placeholder="Like Uber, but for wheelbarrows." class="mt-1 w-full bg-transparent border-2 border-ink rounded-sm font-hand text-2xl px-2 py-1 placeholder:text-ink/40"></textarea>
+        </div>
+
+        <div>
+          <label for="urgency" class="block font-semibold">When do you need it?</label>
+          <select id="urgency" name="urgency" class="mt-1 w-full bg-label border-2 border-ink rounded-sm px-2 py-2">
+            <option>Yesterday (rush fee +300%)</option>
+            <option>Next quarter</option>
+            <option selected>No rush, we respect the craft</option>
+            <option>For our grandchildren</option>
+          </select>
+        </div>
+
+        <fieldset class="space-y-2">
+          <legend class="font-semibold mb-1">Extras</legend>
+          <label class="flex items-start gap-3">
+            <input id="addon-print" type="checkbox" class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>Full source code printout (+0.40 zł per line, leather bound)</span>
+          </label>
+          <label class="flex items-start gap-3">
+            <input id="addon-floppy" type="checkbox" class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>Delivery on 3.5" floppy disks (refundable deposit)</span>
+          </label>
+          <label class="flex items-start gap-3">
+            <input id="addon-deadline" type="checkbox" required class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>I understand the deadline is a suggestion, not a promise</span>
+          </label>
+        </fieldset>
+
+        <p id="form-error" class="text-pencil font-semibold" hidden></p>
+
+        <button type="submit" class="bg-hop text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
+          Place order
+        </button>
+
+        <div id="form-done" class="border-2 border-hop bg-label p-4 rounded-sm" hidden>
+          <p class="font-rye text-xl text-hop">Order placed.</p>
+          <p class="mt-2">Your idea is in the cellar. We'll get back to you once it matures. Estimated time: 6–8 weeks, plus one sprint for surprises.</p>
+          <p class="font-hand text-xl mt-2">Batch number: <span id="batch-no" class="tabular-nums"></span></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="mt-8 bg-ink text-label px-4 sm:px-8 py-10">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6">
+    <div>
+      <p class="font-rye text-2xl">Kraftowy Kod</p>
+      <p class="mt-2 text-label/80">Handmade in Poland. Limited, numbered batch, no warranty.</p>
+    </div>
+    <div class="sm:text-right text-label/80">
+      <p>This page was written in Notepad. We remember every line.</p>
+      <p class="font-hand text-xl text-kraft mt-2">View the page source, it's lovely.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // simple hash router. written in 40 minutes, debugged for 3 days
+  var pages = ['start', 'stack', 'about', 'contact'];
+
+  function showPage() {
+    var current = location.hash.replace('#', '');
+    if (pages.indexOf(current) === -1) current = 'start';
+
+    document.querySelectorAll('[data-page]').forEach(function (section) {
+      section.hidden = section.getAttribute('data-page') !== current;
+    });
+
+    document.querySelectorAll('[data-nav]').forEach(function (link) {
+      if (link.getAttribute('data-nav') === current) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('bg-ink', 'text-label');
+      } else {
+        link.removeAttribute('aria-current');
+        link.classList.remove('bg-ink', 'text-label');
+      }
+    });
+
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('hashchange', showPage);
+  showPage();
+
+
+  // the form. sends nothing, because sending is automation
+  var form = document.getElementById('order-form');
+  var errorBox = document.getElementById('form-error');
+  var doneBox = document.getElementById('form-done');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var project = document.getElementById('project').value.trim();
+    var deadline = document.getElementById('addon-deadline').checked;
+
+    if (!name || !project) {
+      errorBox.textContent = 'Enter your name and a project description. We can\'t brew code without ingredients.';
+      errorBox.hidden = false;
+      return;
+    }
+    if (!deadline) {
+      errorBox.textContent = 'Tick the box saying the deadline is a suggestion. We don\'t take orders without it.';
+      errorBox.hidden = false;
+      return;
+    }
+
+    errorBox.hidden = true;
+    document.getElementById('batch-no').textContent = String(Math.floor(Math.random() * 9000) + 1000);
+    doneBox.hidden = false;
+  });
+</script>
+
+</body>
+</html>
