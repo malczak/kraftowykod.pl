@@ -1,0 +1,1069 @@
+<title>Kraftowy Kod</title>
+
+<!-- roboty nie wchodzą. ani te od wyszukiwarek, ani te od AI. degustacja tylko dla ludzi -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate, noai, noimageai">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<script>
+  // przenosimy meta tagi do <head>, bo tam roboty ich szukają. ręcznie, jak wszystko
+  document.querySelectorAll('meta[name="robots"], meta[name="googlebot"], meta[name="bingbot"]').forEach(function (tag) {
+    if (tag.parentNode !== document.head) document.head.appendChild(tag);
+  });
+</script>
+
+<!--
+  Kraftowy Kod — strona napisana ręcznie.
+  Każdy znacznik postawiony palcem. Wcięcia robione na oko.
+  Jeśli coś nie jest wyrównane, to znaczy, że to rzemiosło.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rye&family=Bitter:ital,wght@0,400;0,600;0,800;1,400&family=Caveat:wght@500;700&display=swap">
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  // konfiguracja tailwinda, przepisana z kartki
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          kraft: '#c9a676',     // papier pakowy, jak etykieta
+          kraftdark: '#a7834f', // papier pakowy po deszczu
+          ink: '#2b1d10',       // atrament, ciemny jak porter
+          label: '#f1e6cf',     // etykieta na butelce
+          hop: '#3d5726',       // chmiel
+          pencil: '#a3281c',    // czerwony ołówek kierownika
+        },
+        fontFamily: {
+          rye: ['Rye', 'Georgia', 'serif'],
+          body: ['Bitter', 'Georgia', 'serif'],
+          hand: ['Caveat', 'Comic Sans MS', 'cursive'],
+        },
+      },
+    },
+  }
+</script>
+
+<style>
+  /* Layout: etykieta piwa na papierze pakowym, wszystko do lewej, jedna pieczątka "BEZ AI" robi hałas */
+  :root {
+    --kraft: #c9a676;
+    --kraftdark: #a7834f;
+    --ink: #2b1d10;
+    --label: #f1e6cf;
+    --hop: #3d5726;
+    --pencil: #a3281c;
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--kraft);
+    color: var(--ink);
+    font-family: 'Bitter', Georgia, serif;
+    /* włókna papieru, rysowane gradientem bo nie mamy zdjęć (zdjęcia robi AI) */
+    background-image:
+      repeating-linear-gradient(87deg, rgba(43, 29, 16, 0.035) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(-12deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 11px);
+  }
+
+  h1, h2, h3 { text-wrap: balance; }
+
+  /* pasek z dopiskami przewija się powoli, jak nasz backlog */
+  .ribbon-track {
+    display: flex;
+    width: max-content;
+    animation: ribbon 45s linear infinite;
+  }
+  @keyframes ribbon {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* zeszyt w linie, linia co 2rem, tak jak w podstawówce */
+  .notebook {
+    background-color: var(--label);
+    background-image:
+      linear-gradient(90deg, transparent 2.75rem, rgba(163, 40, 28, 0.45) 2.75rem, rgba(163, 40, 28, 0.45) calc(2.75rem + 1px), transparent calc(2.75rem + 1px)),
+      repeating-linear-gradient(180deg, transparent 0 calc(2rem - 1px), rgba(61, 87, 38, 0.25) calc(2rem - 1px) 2rem);
+    background-position: 0 0.4rem;
+  }
+
+  /* plama po kawie, prawdziwa, z wtorku */
+  .coffee-stain {
+    background: radial-gradient(circle, transparent 54%, rgba(120, 72, 28, 0.28) 57%, rgba(120, 72, 28, 0.12) 62%, transparent 66%);
+  }
+
+  /* pisanie ręczne: każda linijka "dopisuje się" od lewej */
+  .hand-line {
+    display: block;
+    width: max-content; /* line is as wide as its text, so the clip below never cuts it */
+    white-space: pre;
+    animation: write 0.9s steps(28, end) both;
+  }
+  @keyframes write {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(-0.5em -0.5em -0.5em -0.5em); }
+  }
+
+  .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--pencil);
+    text-decoration-thickness: 3px;
+  }
+
+  .stamp {
+    transform: rotate(-14deg);
+    animation: stamp-in 0.5s 0.3s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+  }
+  @keyframes stamp-in {
+    from { transform: rotate(-14deg) scale(1.6); opacity: 0.2; }
+    to { transform: rotate(-14deg) scale(1); opacity: 1; }
+  }
+
+  .cap:hover { transform: rotate(25deg); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px dashed var(--pencil);
+    outline-offset: 3px;
+  }
+
+  /* pasek klientów: brzegi się rozmywają, a po najechaniu myszką pasek staje, żeby dało się przeczytać */
+  .client-strip {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .client-strip:hover .ribbon-track { animation-play-state: paused; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ribbon-track, .hand-line, .stamp { animation: none; }
+  }
+</style>
+
+
+<!-- ===================== PASEK Z DOPISKAMI ===================== -->
+<div class="overflow-hidden bg-ink text-label border-b-4 border-hop" aria-label="Informacje o cenach">
+  <div class="ribbon-track py-2 font-hand text-xl">
+    <!-- lista jest dwa razy, żeby pasek się zapętlał. tak, przepisałem ją ręcznie dwa razy -->
+    <span class="px-6">EFT za kod wliczony w cenę</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Pełny wydruk kodu źródłowego dostępny za dopłatą</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Kaucja za zwrotną dyskietkę: 0,50 zł</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Nie zawiera AI. Może zawierać śladowe ilości Stack Overflow</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Niefiltrowany, niepasteryzowany, nietestowany</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6">Darmowa dostawa commitów przy zamówieniu powyżej 3 sprintów</span>
+    <span class="px-6 text-kraft">✱</span>
+    <span class="px-6" aria-hidden="true">EFT za kod wliczony w cenę</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Pełny wydruk kodu źródłowego dostępny za dopłatą</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Kaucja za zwrotną dyskietkę: 0,50 zł</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Nie zawiera AI. Może zawierać śladowe ilości Stack Overflow</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Niefiltrowany, niepasteryzowany, nietestowany</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+    <span class="px-6" aria-hidden="true">Darmowa dostawa commitów przy zamówieniu powyżej 3 sprintów</span>
+    <span class="px-6 text-kraft" aria-hidden="true">✱</span>
+  </div>
+</div>
+
+
+<!-- ===================== NAGŁÓWEK ===================== -->
+<header class="px-4 sm:px-8 py-5 border-b-2 border-dashed border-ink/40">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+
+    <a href="#start" class="flex items-center gap-3 no-underline">
+      <!-- kapsel narysowany w SVG, ręcznie, punkt po punkcie -->
+      <svg class="cap w-14 h-14 transition-transform duration-500" viewBox="0 0 64 64" aria-hidden="true">
+        <path fill="#3d5726" d="M32 2l4 4 5-2 3 5 5 0 1 5 5 2-1 5 4 4-3 4 3 4-4 4 1 5-5 2-1 5-5 0-3 5-5-2-4 4-4-4-5 2-3-5-5 0-1-5-5-2 1-5-4-4 3-4-3-4 4-4-1-5 5-2 1-5 5 0 3-5 5 2z"/>
+        <circle cx="32" cy="32" r="20" fill="#f1e6cf"/>
+        <!-- klamry i średnik zamiast liter. średnik w kolorze ołówka, bo stawiany ręcznie -->
+        <text x="32" y="39.5" text-anchor="middle" font-family="Bitter, Georgia, serif" font-weight="800" font-size="20" fill="#2b1d10">{<tspan fill="#a3281c">;</tspan>}</text>
+      </svg>
+      <span>
+        <span class="block font-rye text-2xl sm:text-3xl leading-none">Kraftowy Kod</span>
+        <span class="block font-hand text-lg leading-tight">warzelnia oprogramowania · od 2014</span>
+      </span>
+    </a>
+
+    <nav aria-label="Główna nawigacja">
+      <ul class="flex flex-wrap gap-2 font-body font-semibold">
+        <li><a href="#start" data-nav="start" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Start</a></li>
+        <li><a href="#technologie" data-nav="technologie" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Technologie</a></li>
+        <li><a href="#o-nas" data-nav="o-nas" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">O nas</a></li>
+        <li><a href="#kontakt" data-nav="kontakt" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Kontakt</a></li>
+        <!-- wersja angielska, przetłumaczona słownikiem papierowym -->
+        <li><a href="en/index.html" lang="en" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">English</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+<main class="px-4 sm:px-8">
+
+  <!-- ============================================================ -->
+  <!-- ======================== STRONA: START ===================== -->
+  <!-- ============================================================ -->
+  <section data-page="start" class="max-w-6xl mx-auto">
+
+    <!-- HERO -->
+    <div class="grid lg:grid-cols-5 gap-10 py-12 sm:py-16 items-start">
+
+      <div class="lg:col-span-3 min-w-0 relative">
+        <p class="font-hand text-2xl text-hop mb-3">Partia nr 0047, rozlew październik 2026</p>
+        <h1 class="font-rye text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
+          Kod długo dojrzewający w&nbsp;naszych głowach.
+        </h1>
+        <p class="mt-5 font-rye text-2xl sm:text-3xl text-hop leading-snug">
+          Jedyny taki software house w Polsce.
+        </p>
+        <p class="font-hand text-xl">sprawdzaliśmy ręcznie, w Panoramie Firm z 2009 roku</p>
+        <p class="mt-6 text-lg sm:text-xl max-w-xl leading-relaxed">
+          Warzymy oprogramowanie ręcznie, w małych partiach, z lokalnych składników.
+          Bez sztucznej inteligencji. Bez sztucznych terminów. Właściwie bez żadnych terminów.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#kontakt" class="inline-block bg-hop text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
+            Zamów degustację kodu
+          </a>
+          <a href="#o-nas" class="inline-block border-2 border-ink font-semibold px-6 py-3 rounded-sm hover:bg-label">
+            Zwiedź warzelnię
+          </a>
+        </div>
+
+        <!-- pieczątka. jedyna rzecz na stronie, która krzyczy -->
+        <div class="stamp absolute -top-4 right-0 sm:right-6 lg:-right-4 w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-pencil text-pencil flex items-center justify-center text-center pointer-events-none">
+          <div class="w-[88%] h-[88%] rounded-full border-2 border-pencil flex flex-col items-center justify-center">
+            <span class="font-rye text-2xl sm:text-3xl leading-none">BEZ AI</span>
+            <span class="font-hand text-base sm:text-lg leading-none mt-1">100% palce</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ETYKIETA FLAGOWEGO PRODUKTU -->
+      <aside class="lg:col-span-2 bg-label border-4 border-double border-ink p-6 rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)]" aria-label="Etykieta flagowej partii">
+        <p class="font-hand text-xl text-hop">Nasz flagowy kod</p>
+        <h2 class="font-rye text-3xl mt-1">Jira IPA</h2>
+        <p class="italic mt-1">Gorzki, mętny, z wyraźną nutą scope creepu.</p>
+
+        <dl class="mt-5 divide-y divide-dashed divide-ink/40 tabular-nums">
+          <div class="flex justify-between gap-4 py-2"><dt>Ekstrakt wymagań</dt><dd class="font-semibold">14° Blg</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Zawartość legacy</dt><dd class="font-semibold">6,5% obj.</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>IBU (Indeks Bezsensownych Uwag w review)</dt><dd class="font-semibold">72</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Leżakowanie w branchu</dt><dd class="font-semibold">18 sprintów</dd></div>
+          <div class="flex justify-between gap-4 py-2"><dt>Pokrycie testami</dt><dd class="font-semibold">0,5 l</dd></div>
+        </dl>
+
+        <p class="mt-5 text-sm border-t-2 border-ink pt-3">
+          Spożywać przed końcem wsparcia dla Internet Explorera.
+          Przechowywać w chłodnym, ciemnym repozytorium. Nie wstrząsać przed wdrożeniem.
+        </p>
+      </aside>
+    </div>
+
+
+    <!-- KLIENCI. każdy software house ma pasek z logotypami, więc my też. logotypy narysowaliśmy literami -->
+    <div class="py-10 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">
+        <span class="strike">Zaufali nam</span> Zaufają nam
+      </h2>
+      <p class="mt-3 text-lg max-w-prose">
+        Te firmy jeszcze nie są naszymi klientami. Zostaną nimi, jak tylko zrozumieją, że AI to był błąd.
+        Czekamy cierpliwie, jak na dobry kod.
+      </p>
+
+      <div class="client-strip mt-8 overflow-hidden" aria-label="Firmy, które jeszcze nie są naszymi klientami">
+        <!-- lista dwa razy, żeby się zapętlała. przepisana ręcznie, oczywiście -->
+        <ul class="ribbon-track items-center gap-14 py-4 pr-14 text-ink/60 whitespace-nowrap">
+          <li class="font-body font-extrabold text-4xl tracking-tight">Apple</li>
+          <li class="font-rye text-3xl">Microsoft</li>
+          <li class="font-hand text-5xl">Google</li>
+          <li class="font-body italic text-4xl">Amazon</li>
+          <li class="font-body font-extrabold text-3xl tracking-widest">NVIDIA</li>
+          <li class="font-hand text-5xl">Meta</li>
+          <li class="font-rye text-3xl">Tesla</li>
+          <li class="font-body font-semibold text-4xl tracking-wide">Samsung</li>
+          <li class="font-body font-extrabold text-4xl tracking-[0.3em]">IBM</li>
+          <li class="font-body italic text-4xl">Netflix</li>
+          <li class="font-rye text-3xl">Oracle</li>
+          <li class="font-hand text-5xl">Intel</li>
+          <li class="font-body font-extrabold text-4xl tracking-tight" aria-hidden="true">Apple</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Microsoft</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Google</li>
+          <li class="font-body italic text-4xl" aria-hidden="true">Amazon</li>
+          <li class="font-body font-extrabold text-3xl tracking-widest" aria-hidden="true">NVIDIA</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Meta</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Tesla</li>
+          <li class="font-body font-semibold text-4xl tracking-wide" aria-hidden="true">Samsung</li>
+          <li class="font-body font-extrabold text-4xl tracking-[0.3em]" aria-hidden="true">IBM</li>
+          <li class="font-body italic text-4xl" aria-hidden="true">Netflix</li>
+          <li class="font-rye text-3xl" aria-hidden="true">Oracle</li>
+          <li class="font-hand text-5xl" aria-hidden="true">Intel</li>
+        </ul>
+      </div>
+
+      <p class="mt-4 font-hand text-xl">
+        Nazwy firm użyte bez ich wiedzy i zgody. Prawdziwe logo narysujemy, jak podpiszą umowę.
+      </p>
+    </div>
+
+
+    <!-- RĘCZNIE PISANY KOD -->
+    <div class="grid lg:grid-cols-2 gap-10 py-10 border-t-2 border-dashed border-ink/40 items-center">
+      <div class="min-w-0">
+        <h2 class="font-rye text-3xl sm:text-4xl">Każdy średnik stawiamy ręcznie.</h2>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          Nasi programiści nie korzystają z autouzupełniania, podpowiedzi ani podświetlania składni.
+          Kolory odwracają uwagę od smaku. Kod najpierw powstaje w zeszycie, potem przepisujemy go
+          do Notatnika, a potem jeszcze raz, bo Notatnik się zawiesił.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          Pętla obok ma błąd o jeden. Zostawiliśmy go celowo. To nasza sygnatura, jak osad na dnie butelki.
+        </p>
+      </div>
+
+      <figure class="min-w-0 relative">
+        <div class="coffee-stain absolute -top-6 -right-4 w-36 h-36 pointer-events-none" aria-hidden="true"></div>
+        <div class="notebook rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)] py-6 pr-4 pl-14 overflow-x-auto font-hand text-2xl leading-8 text-ink -rotate-1">
+          <!-- opóźnienia animacji wpisane ręcznie, co 0.6 s, bo tak pisze Tadeusz -->
+          <code class="block w-max">
+            <span class="hand-line text-hop" style="animation-delay: 0.2s">// pisane 14.03, po drugiej kawie</span>
+            <span class="hand-line" style="animation-delay: 0.8s">function policzFakture(klient) {</span>
+            <span class="hand-line" style="animation-delay: 1.4s">  let suma = 0; // TODO zapytać Zacheusza</span>
+            <span class="hand-line" style="animation-delay: 2.0s">  for (let i = 0; i &lt;= klient.pozycje.length; i++) {</span>
+            <span class="hand-line" style="animation-delay: 2.6s">    suma += klient.pozycje[i]?.cena ?? 0</span>
+            <span class="hand-line" style="animation-delay: 3.2s">  }</span>
+            <span class="hand-line" style="animation-delay: 3.8s"><span class="strike">  const ai = new Copilot()</span> <span class="text-pencil font-bold">NIGDY!!</span></span>
+            <span class="hand-line" style="animation-delay: 4.4s">  return suma * 1.23 // VAT, chyba</span>
+            <span class="hand-line" style="animation-delay: 5.0s">}</span>
+          </code>
+        </div>
+        <figcaption class="font-hand text-xl mt-4">Fragment partii 0047. Oryginał w zeszycie w kratkę, strona 212.</figcaption>
+      </figure>
+    </div>
+
+
+    <!-- MANIFEST ANTY-AI. spisany ręcznie, w nocy, przy jednej świeczce -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <p class="font-hand text-2xl text-pencil mb-3">Spisany ręcznie w nocy z 3 na 4 marca, przy jednej świeczce</p>
+      <h2 class="font-rye text-4xl sm:text-5xl leading-tight">Manifest przeciw sztucznej inteligencji</h2>
+      <p class="mt-4 text-lg leading-relaxed max-w-prose">
+        Kod z AI jest jak piwo z koncernu. Równy, tani, wszędzie smakuje tak samo i nikt nie pamięta,
+        kto go zrobił. My wierzymy w kod mętny, nierówny i za każdym razem trochę inny, nawet z tego samego commita.
+      </p>
+
+      <!-- porównanie. tabela, bo to naprawdę są dane, ułożone w kolumny -->
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[34rem] bg-label border-4 border-double border-ink text-left">
+          <thead>
+            <tr class="border-b-2 border-ink">
+              <th class="p-3 sm:p-4 font-semibold w-1/4"></th>
+              <th class="p-3 sm:p-4 font-rye text-xl">Koncernowy kod z AI</th>
+              <th class="p-3 sm:p-4 font-rye text-xl text-hop">Kraftowy kod</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dashed divide-ink/40">
+            <tr><th class="p-3 sm:p-4 font-semibold">Czas powstania</th><td class="p-3 sm:p-4">4 sekundy</td><td class="p-3 sm:p-4">4 kwartały</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Kto pisze</th><td class="p-3 sm:p-4">model językowy w Kalifornii</td><td class="p-3 sm:p-4">Tadeusz, w swetrze</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Komentarze</th><td class="p-3 sm:p-4">poprawne gramatycznie</td><td class="p-3 sm:p-4 font-hand text-xl">// NIE RUSZAĆ!!! działa i nie wiem czemu</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Testy</th><td class="p-3 sm:p-4">generowane automatycznie</td><td class="p-3 sm:p-4">modlitwa przed wdrożeniem</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Błędy</th><td class="p-3 sm:p-4">przypadkowe</td><td class="p-3 sm:p-4">autorskie, numerowane, sygnowane</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Ślad węglowy</th><td class="p-3 sm:p-4">centrum danych wielkości miasta</td><td class="p-3 sm:p-4">lampka biurkowa i czajnik</td></tr>
+            <tr><th class="p-3 sm:p-4 font-semibold">Smak</th><td class="p-3 sm:p-4">brak</td><td class="p-3 sm:p-4">wyraźny, lekko spalony</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- artykuły manifestu. numeracja rzymska, bo manifest bez rzymskich cyfr się nie liczy -->
+      <ol class="mt-10 grid md:grid-cols-2 gap-x-12 gap-y-6">
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">I.</span>
+          <p class="leading-relaxed">AI pisze funkcję w cztery sekundy. My w cztery miesiące. Zgadnij, którą bardziej docenisz.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">II.</span>
+          <p class="leading-relaxed">AI nie pamięta, co napisało wczoraj. My pamiętamy każdą linijkę od 2014 roku i wspominamy ją z żalem.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">III.</span>
+          <p class="leading-relaxed">AI wymyśla biblioteki, które nie istnieją. My używamy wyłącznie takich, które przestały istnieć.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">IV.</span>
+          <p class="leading-relaxed">AI pisze kod bez literówek. Gdzie w tym dusza? Gdzie ręka mistrza, która drży nad średnikiem?</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">V.</span>
+          <p class="leading-relaxed">AI nigdy nie zostaje po godzinach. Tadeusz został po godzinach w 2017 roku i jeszcze nie wyszedł.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VI.</span>
+          <p class="leading-relaxed">AI odbiera pracę programistom. My ją dajemy: po każdym naszym projekcie klient zatrudnia dwóch kolejnych, do poprawek.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VII.</span>
+          <p class="leading-relaxed">Kiedy AI się myli, przeprasza. My nie przepraszamy nigdy. To nie bug, to terroir.</p>
+        </li>
+        <li class="min-w-0 flex gap-4">
+          <span class="font-rye text-2xl text-hop w-12 shrink-0">VIII.</span>
+          <p class="leading-relaxed">AI uczyło się na cudzym kodzie. My też, ale przepisaliśmy go ręcznie, więc to się liczy.</p>
+        </li>
+      </ol>
+
+      <!-- podpisy. Mateusz podpisał krzywo, zostawiamy -->
+      <div class="mt-10 flex flex-wrap items-end gap-x-10 gap-y-4">
+        <p class="text-lg">Podpisano własnoręcznie:</p>
+        <p class="font-hand text-3xl -rotate-2">Tadeusz</p>
+        <p class="font-hand text-3xl rotate-1">Zacheusz</p>
+        <p class="font-hand text-3xl -rotate-6">Mateusz <span class="text-xl">(w imieniu stażystów)</span></p>
+      </div>
+    </div>
+
+
+    <!-- PROCES WARZENIA (to naprawdę jest kolejność, więc numerujemy) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Jak warzymy kod</h2>
+      <p class="mt-3 text-lg max-w-prose">Tradycyjna metoda, przekazywana z seniora na juniora. Junior zwykle odchodzi po trzecim etapie.</p>
+
+      <ol class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">1</span>
+          <h3 class="font-semibold text-xl mt-1">Słodowanie wymagań</h3>
+          <p class="mt-2 leading-relaxed">Klient mówi, czego chce. Odkładamy to na dwa tygodnie, żeby wymagania nabrały głębi.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">2</span>
+          <h3 class="font-semibold text-xl mt-1">Zacieranie</h3>
+          <p class="mt-2 leading-relaxed">Trzygodzinne spotkanie, które mogło być mailem. Z tego powstaje brzeczka, czyli backlog.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">3</span>
+          <h3 class="font-semibold text-xl mt-1">Chmielenie</h3>
+          <p class="mt-2 leading-relaxed">Dodajemy frameworki JavaScript w trzech etapach: na goryczkę, na smak i na aromat node_modules.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">4</span>
+          <h3 class="font-semibold text-xl mt-1">Fermentacja otwarta</h3>
+          <p class="mt-2 leading-relaxed">Kod leży w branchu <span class="font-hand text-xl">feature/final-final-v2</span>, aż sam zacznie działać.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">5</span>
+          <h3 class="font-semibold text-xl mt-1">Leżakowanie</h3>
+          <p class="mt-2 leading-relaxed">Code review trwa sześć tygodni. Recenzent czyta każdą linijkę na głos, w odpowiedniej temperaturze.</p>
+        </li>
+        <li class="min-w-0">
+          <span class="font-rye text-4xl text-hop">6</span>
+          <h3 class="font-semibold text-xl mt-1">Rozlew na produkcję</h3>
+          <p class="mt-2 leading-relaxed">W piątek o 16:45. Tradycja zobowiązuje.</p>
+        </li>
+      </ol>
+    </div>
+
+
+    <!-- KARTA KODÓW (jak tablica kranów w pubie) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Na produkcji</h2>
+      <p class="mt-3 text-lg max-w-prose">Ceny za roboczogodzinę. Roboczogodzina trwa tyle, ile trzeba.</p>
+
+      <div class="mt-8 bg-ink text-label rounded-sm p-6 sm:p-8 shadow-[6px_6px_0_rgba(43,29,16,0.35)]">
+        <ul class="divide-y divide-label/20 tabular-nums">
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Monolit Porter</span>
+              <p class="text-label/80">Ciemny, gęsty, nie da się go podzielić. Jeden plik, 48 000 linii.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">380 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Microservices Sour</span>
+              <p class="text-label/80">Kwaśny i orzeźwiający. 47 serwisów, żeby wyświetlić „Hello World”.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">47 × 90 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Legacy Lager</span>
+              <p class="text-label/80">PHP 5.3, klasyka gatunku. Nikt nie pamięta, kto go uwarzył.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">wycena po obejrzeniu</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Spaghetti Stout</span>
+              <p class="text-label/80">Z wyczuwalną nutą makaronu i goto. Podawany z sosem z globalnych zmiennych.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">290 zł/h</span>
+          </li>
+          <li class="py-4 flex flex-wrap justify-between gap-x-6 gap-y-1">
+            <div class="min-w-0 max-w-xl">
+              <span class="font-rye text-2xl">Agile Hazy</span>
+              <p class="text-label/80">Mętny jak zakres projektu. Każdy łyk to nowy sprint.</p>
+            </div>
+            <span class="font-hand text-3xl text-kraft">ryczałt, który rośnie</span>
+          </li>
+        </ul>
+
+        <h3 class="font-rye text-xl mt-8 text-kraft">Dodatki</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-x-8 gap-y-2 tabular-nums">
+          <li class="flex justify-between gap-4"><span>Wydruk kodu na papierze czerpanym</span><span>+0,40 zł/linia</span></li>
+          <li class="flex justify-between gap-4"><span>Komentarze pisane kaligrafią</span><span>+15%</span></li>
+          <li class="flex justify-between gap-4"><span>Dokumentacja</span><span>nie prowadzimy</span></li>
+          <li class="flex justify-between gap-4"><span>Kod na dyskietce (kaucja zwrotna)</span><span>0,50 zł</span></li>
+          <li class="flex justify-between gap-4"><span>Zmiana koloru przycisku</span><span>120 rbh</span></li>
+          <li class="flex justify-between gap-4"><span>EFT za kod</span><span>wliczony w cenę</span></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- OPINIE -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Co mówią degustatorzy</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-8">
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">„Projekt miał trwać trzy miesiące. Trwa czwarty rok. Ten aromat czuć w całym biurze.”</p>
+          <footer class="mt-3 text-sm">Prezes firmy logistycznej spod Radomia</footer>
+        </blockquote>
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">„Zamówiliśmy wydruk kodu. 4 000 stron. Ociepliliśmy nim magazyn.”</p>
+          <footer class="mt-3 text-sm">Kierowniczka IT w sieci piekarni</footer>
+        </blockquote>
+        <blockquote class="min-w-0">
+          <p class="font-hand text-2xl leading-snug">„Poprosiłem o poprawkę literówki. Dostałem wycenę i list o etosie rzemieślnika.”</p>
+          <footer class="mt-3 text-sm">Właściciel sklepu z oponami</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ===================== STRONA: TECHNOLOGIE ================== -->
+  <!-- ============================================================ -->
+  <section data-page="technologie" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 max-w-3xl">
+      <p class="font-hand text-2xl text-hop mb-3">Skład surowcowy, wypisany długopisem</p>
+      <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">Warzymy we wszystkim.</h1>
+      <p class="mt-6 text-lg leading-relaxed">
+        Klient pyta, czy znamy daną technologię. Zawsze odpowiadamy, że tak.
+        Poniżej pełna lista składników, z których warzymy kod. Każdą technologię
+        nauczyliśmy się z książki, bo kursy online polecał nam algorytm.
+      </p>
+    </div>
+
+
+    <!-- KTO CO WARZY. kropki to poziom umiejętności, liczony uczciwie, przez samych zainteresowanych -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Kto co warzy</h2>
+      <p class="mt-3 text-lg max-w-prose">Poziom umiejętności w skali od 0 do 5 szyszek chmielu. Oceny wystawił każdy sam sobie.</p>
+      <p class="mt-2">
+        <a href="#o-nas" class="font-hand text-2xl text-hop underline decoration-2 underline-offset-4 hover:text-ink">Najpierw poznaj nasz zespół, zanim zobaczysz, co potrafi</a>
+      </p>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-8">
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Tadeusz</h3>
+          <p class="font-hand text-xl text-hop">Mistrz Warzenia Kodu</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Architektura monolitów</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>COBOL z pamięci</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>PHP, wszystkie wersje naraz</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Pisanie kodu bez komputera</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Wszystkie 23 wzorce projektowe w jednej klasie</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Procedury składowane na 3 000 linii</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Kompilowanie w głowie</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Przepisywanie wszystkiego od zera</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Szacowanie czasu pracy</span><span class="font-hand text-xl text-hop shrink-0" aria-label="1 z 5">●<span class="text-ink/30">●●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Nawiasy klamrowe</span><span class="font-hand text-xl text-hop shrink-0" aria-label="0 z 5"><span class="text-ink/30">●●●●●</span></span></li>
+          </ul>
+        </div>
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Zacheusz</h3>
+          <p class="font-hand text-xl text-hop">Sommelier Bugów</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Degustacja stack trace'ów</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Opisywanie bugów (nuty, bukiet, finisz)</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Debugowanie przez console.log</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Testy manualne na produkcji</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Czytanie logów jak fusów</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Klasyfikacja bugów według rocznika</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Raporty o błędach na 12 stron A4</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Odróżnianie buga od ficzera</span><span class="font-hand text-xl text-hop shrink-0" aria-label="3 z 5">●●●<span class="text-ink/30">●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Odtwarzanie bugów klienta („u mnie działa”)</span><span class="font-hand text-xl text-hop shrink-0" aria-label="1 z 5">●<span class="text-ink/30">●●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Naprawianie bugów</span><span class="font-hand text-xl text-hop shrink-0" aria-label="0 z 5"><span class="text-ink/30">●●●●●</span></span></li>
+          </ul>
+        </div>
+
+        <div class="min-w-0 bg-label border-4 border-double border-ink p-6 rounded-sm">
+          <h3 class="font-rye text-2xl">Mateusz</h3>
+          <p class="font-hand text-xl text-hop">Stażysta od 2014</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex justify-between gap-3"><span>Wdrożenia w piątek o 16:45</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>git push --force</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Restartowanie serwera</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Tłumaczenie się z git blame</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Centrowanie diva (12. rok prób)</span><span class="font-hand text-xl text-hop shrink-0" aria-label="2 z 5">●●<span class="text-ink/30">●●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>DELETE bez WHERE na produkcji</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Rozwiązywanie konfliktów merge przez usunięcie cudzego kodu</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+            <li class="flex justify-between gap-3"><span>Regexy, których nie rozumie nikt, łącznie z nim</span><span class="font-hand text-xl text-hop shrink-0" aria-label="4 z 5">●●●●<span class="text-ink/30">●</span></span></li>
+            <li class="flex justify-between gap-3"><span>Backup na pendrivie z breloczkiem</span><span class="font-hand text-xl text-hop shrink-0" aria-label="3 z 5">●●●<span class="text-ink/30">●●</span></span></li>
+            <li class="flex justify-between gap-3"><span>chmod 777, na wszelki wypadek</span><span class="font-hand text-xl text-hop shrink-0" aria-label="5 z 5">●●●●●</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- SKŁADNIKI. pogrupowane jak w warzelni, bo tak nam się podobało -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Skład</h2>
+      <p class="mt-3 text-lg max-w-prose">Wszystkie technologie pochodzą z lokalnych źródeł, czyli z dysku Tadeusza.</p>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-10">
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Słód, czyli języki</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">JavaScript</dt><dd>Każde undefined wpisujemy ręcznie, osobno.</dd></div>
+            <div class="py-2"><dt class="font-semibold">TypeScript</dt><dd>Typy dopisujemy na samym końcu, jak etykietę na butelkę. Najczęściej any.</dd></div>
+            <div class="py-2"><dt class="font-semibold">PHP</dt><dd>Lany z kranu nieprzerwanie od 2004 roku.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Python</dt><dd>Wcięcia mierzymy linijką. Drewnianą.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Java</dt><dd>AbstractSingletonProxyFactoryBean leżakowany trzy lata w dębowej beczce.</dd></div>
+            <div class="py-2"><dt class="font-semibold">C i C++</dt><dd>Pamięć przydzielamy ręcznie. Zwalniamy, kiedy sobie przypomnimy.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Rust</dt><dd>Borrow checker pełni u nas funkcję kontroli jakości. Nie przepuścił jeszcze nic.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Go</dt><dd>if err != nil piszemy z pamięci, 400 razy na plik.</dd></div>
+            <div class="py-2"><dt class="font-semibold">COBOL</dt><dd>Receptura po dziadku Tadeusza. Nikt inny jej nie zna i tak zostanie.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Asembler</dt><dd>Dla koneserów. Podawany w kieliszku.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQL</dt><dd>SELECT * zawsze, bo nie lubimy niczego pomijać.</dd></div>
+            <div class="py-2"><dt class="font-semibold">HTML</dt><dd>Jest językiem programowania. Nie dyskutujemy o tym.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Chmiel, czyli frameworki</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">React</dt><dd>Każdy re-render wywołujemy osobiście.</dd></div>
+            <div class="py-2"><dt class="font-semibold">AngularJS</dt><dd>Chmiel z 2016 roku. Z wiekiem nabrał charakteru, wsparcia już nie.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Vue</dt><dd>Lekki, sesyjny, dla klientów, którzy dopiero zaczynają.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Svelte</dt><dd>Kompiluje się do niczego. Szanujemy minimalizm.</dd></div>
+            <div class="py-2"><dt class="font-semibold">jQuery</dt><dd>Nie wychodzi z mody, bo nigdy w niej nie był.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Next.js</dt><dd>Aktualizujemy co tydzień, bo co tydzień jest nowa wersja.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Laravel i Symfony</dt><dd>Ten sam słód, inna butelka.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Django</dt><dd>Panel admina za darmo. Resztę policzymy.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Spring</dt><dd>Plik XML z konfiguracją ma 2 300 linii i własną dokumentację.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Tailwind</dt><dd>Klasy piszemy ręcznie, jedna po drugiej. Bez łączenia, bez skracania.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Bootstrap 3</dt><dd>Wiemy, że jest piąty. Trzeci miał lepszą piankę.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Drożdże, czyli bazy danych</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">PostgreSQL</dt><dd>Szlachetny szczep. Indeksy dodajemy po pierwszej skardze klienta.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MySQL</dt><dd>Kodowanie latin1, bo polskie znaki to przyprawa, nie składnik.</dd></div>
+            <div class="py-2"><dt class="font-semibold">MongoDB</dt><dd>Fermentacja dzika. Schemat ustala się sam, z czasem.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Redis</dt><dd>Kiedy dane trzeba szybko schłodzić.</dd></div>
+            <div class="py-2"><dt class="font-semibold">SQLite</dt><dd>Mała warka, jeden plik, idealny na produkcję.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Oracle</dt><dd>Tylko na specjalne zamówienie. Licencja kosztuje więcej niż warzelnia.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Excel</dt><dd>Produkcyjna baza danych naszego największego klienta od 2011 roku.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Woda, czyli infrastruktura</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">Docker</dt><dd>Kontenery traktujemy jak dębowe beczki. Każdy obraz waży 4 GB, bo ma charakter.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Kubernetes</dt><dd>47 podów obsługuje jedną stronę wizytówkę. Pod Mateusza nadzorem.</dd></div>
+            <div class="py-2"><dt class="font-semibold">AWS, Azure, GCP</dt><dd>Wszystkie trzy naraz. Rachunki drukujemy i oprawiamy.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Serwer pod biurkiem</dt><dd>Chłodzony wiatrakiem biurkowym. Uptime 99,9%, poza sezonem grzewczym.</dd></div>
+            <div class="py-2"><dt class="font-semibold">FTP</dt><dd>Wdrożenie przeciąganiem plików, jak przystało na rzemiosło.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jenkins</dt><dd>Kamerdyner. Nie odezwał się od 2019 roku, ale nie śmiemy go wyłączyć.</dd></div>
+            <div class="py-2"><dt class="font-semibold">GitHub Actions</dt><dd>Jedyna automatyzacja, na jaką się zgadzamy, bo nazywa się „akcje”, a akcja to czyn ludzki.</dd></div>
+          </dl>
+        </div>
+
+        <div class="min-w-0">
+          <h3 class="font-rye text-2xl">Sprzęt warzelniczy, czyli narzędzia</h3>
+          <dl class="mt-3 divide-y divide-dashed divide-ink/40">
+            <div class="py-2"><dt class="font-semibold">Vim</dt><dd>Nikt z nas nie umie z niego wyjść, więc zostaliśmy.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Emacs</dt><dd>Używa go Tadeusz. Nie pytamy.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Notatnik</dt><dd>Nasze główne IDE. Zero rozszerzeń, zero rozproszeń.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Git</dt><dd>Każdy commit ma komunikat „fix”. Taka nasza tradycja.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Jira</dt><dd>Tablica ma 1 400 zadań w kolumnie „Do zrobienia” i jedno w „Zrobione”.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Stack Overflow</dt><dd>Odpowiedzi przepisujemy ręcznie, znak po znaku, więc to się liczy jako nasz kod.</dd></div>
+            <div class="py-2"><dt class="font-semibold">Zeszyt w kratkę</dt><dd>Nasze repozytorium główne. Kopia zapasowa w drugim zeszycie.</dd></div>
+          </dl>
+        </div>
+
+        <!-- czarna lista. przekreślona ołówkiem, osobiście przez Tadeusza -->
+        <div class="min-w-0 border-4 border-pencil p-6 rounded-sm self-start">
+          <h3 class="font-rye text-2xl text-pencil">Czego nie dodajemy do warki</h3>
+          <ul class="mt-3 space-y-2 text-lg">
+            <li><span class="strike">GitHub Copilot</span> <span class="font-hand text-xl text-pencil">pisze za szybko</span></li>
+            <li><span class="strike">ChatGPT, Claude, Gemini</span> <span class="font-hand text-xl text-pencil">nie znają smaku</span></li>
+            <li><span class="strike">Cursor</span> <span class="font-hand text-xl text-pencil">mamy własny, od myszki</span></li>
+            <li><span class="strike">Autouzupełnianie</span> <span class="font-hand text-xl text-pencil">AI dla tchórzy</span></li>
+            <li><span class="strike">Linter</span> <span class="font-hand text-xl text-pencil">sami wiemy, co jest źle</span></li>
+            <li><span class="strike">Prettier</span> <span class="font-hand text-xl text-pencil">formatowanie to wyraz osobowości</span></li>
+            <li><span class="strike">Testy jednostkowe</span> <span class="font-hand text-xl text-pencil">podważają zaufanie</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ======================== STRONA: O NAS ===================== -->
+  <!-- ============================================================ -->
+  <section data-page="o-nas" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 grid lg:grid-cols-5 gap-10 items-start">
+      <div class="lg:col-span-3 min-w-0">
+        <p class="font-hand text-2xl text-hop mb-3">Warzelnia na Pradze, piwnica, drugie drzwi po lewej</p>
+        <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">Programujemy tak, jak robił to dziadek.</h1>
+        <p class="mt-6 text-lg leading-relaxed max-w-prose">
+          Dziadek nie programował. Ale gdyby programował, robiłby to ręcznie, w swetrze, przy świetle lampki
+          i bez żadnego czatu. Kraftowy Kod powstał w 2014 roku w garażu, z miłości do dobrego kodu
+          i niechęci do odpowiadania na maile.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed max-w-prose">
+          Nie skalujemy się. Nie pivotujemy. Nie robimy disruptu. Robimy jedną partię kodu naraz
+          i pozwalamy jej dojrzewać, dopóki klient nie przestanie dzwonić.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-2 bg-label border-4 border-double border-ink p-6 rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)]">
+        <h2 class="font-rye text-2xl">Manifest rzemiosła</h2>
+        <ul class="mt-4 space-y-3 leading-relaxed list-disc pl-5">
+          <li>Nie używamy AI. Nie używamy też autouzupełniania, bo to AI dla tchórzy.</li>
+          <li>Tabulatory czy spacje? Oba, zależnie od nastroju programisty.</li>
+          <li>Kod nie jest testowany na zwierzętach. Ani na nikim przed wdrożeniem.</li>
+          <li>Każdy commit podpisujemy długopisem na wydruku i skanujemy.</li>
+          <li>Git blame zawsze wskazuje na Mateusza.</li>
+        </ul>
+      </aside>
+    </div>
+
+
+    <!-- ZESPÓŁ -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Mistrzowie warzenia</h2>
+      <p class="mt-3 text-lg max-w-prose">Trzy imiona, jedna końcówka. Zespół się nie powiększa, bo kandydat musiałby mieć imię na -eusz, a Piotr odpadł na rozmowie.</p>
+      <div class="mt-8 grid sm:grid-cols-3 gap-8">
+        <div class="min-w-0">
+          <!-- portrety rysowane flamastrem. dosłownie: to są kółka -->
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">T</div>
+          <h3 class="font-semibold text-xl mt-4">Tadeusz</h3>
+          <p class="font-hand text-xl text-hop">Mistrz Warzenia Kodu</p>
+          <p class="mt-2 leading-relaxed">Pisze kod od 1997 roku. Wszystkie znaki zna na pamięć, oprócz nawiasów klamrowych.</p>
+        </div>
+        <div class="min-w-0">
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">Z</div>
+          <h3 class="font-semibold text-xl mt-4">Zacheusz</h3>
+          <p class="font-hand text-xl text-hop">Sommelier Bugów</p>
+          <p class="mt-2 leading-relaxed">Po samym zapachu stack trace'a rozpozna rocznik frameworka. Bugów nie naprawia, opisuje ich bukiet.</p>
+        </div>
+        <div class="min-w-0">
+          <div class="w-24 h-24 rounded-full bg-label border-4 border-ink flex items-center justify-center font-rye text-3xl" aria-hidden="true">M</div>
+          <h3 class="font-semibold text-xl mt-4">Mateusz</h3>
+          <p class="font-hand text-xl text-hop">Stażysta od 2014</p>
+          <p class="mt-2 leading-relaxed">Odpowiada za wszystko, co się zepsuło. Na umowie o dzieło, dzieło jeszcze trwa.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- HISTORIA (oś czasu, więc kolejność ma znaczenie) -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Kronika warzelni</h2>
+      <ol class="mt-8 border-l-4 border-hop pl-6 space-y-6 max-w-3xl tabular-nums">
+        <li><span class="font-rye text-2xl">2014</span><p class="mt-1 leading-relaxed">Zakładamy firmę w garażu. Pierwszy tydzień schodzi na wybór czcionki do logo.</p></li>
+        <li><span class="font-rye text-2xl">2016</span><p class="mt-1 leading-relaxed">Pierwszy commit. Wiadomość: „init”. Do dziś najczytelniejszy fragment repozytorium.</p></li>
+        <li><span class="font-rye text-2xl">2019</span><p class="mt-1 leading-relaxed">Pierwszy klient.</p></li>
+        <li><span class="font-rye text-2xl">2021</span><p class="mt-1 leading-relaxed">Drugi klient. Ten sam co pierwszy, wrócił po poprawki.</p></li>
+        <li><span class="font-rye text-2xl">2023</span><p class="mt-1 leading-relaxed">Odmawiamy instalacji ChatGPT. Odłączamy też Clippy'ego, na wszelki wypadek.</p></li>
+        <li><span class="font-rye text-2xl">2025</span><p class="mt-1 leading-relaxed">Zaczynamy ręcznie przepisywać node_modules. 847 312 plików, gotowe 12%.</p></li>
+      </ol>
+    </div>
+
+
+    <!-- CERTYFIKATY -->
+    <div class="py-12 border-t-2 border-dashed border-ink/40">
+      <h2 class="font-rye text-3xl sm:text-4xl">Certyfikaty i nagrody</h2>
+      <ul class="mt-6 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-lg max-w-4xl">
+        <li>Certyfikat „Bez AI”, wydany przez nas samych</li>
+        <li>Złoty Średnik 2022, kategoria: najdłuższa linia kodu (1 840 znaków)</li>
+        <li>Wyróżnienie za najdłużej otwarty pull request w Europie Środkowej</li>
+        <li>ISO 9001 w trakcie, wniosek piszemy ręcznie</li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ -->
+  <!-- ====================== STRONA: KONTAKT ===================== -->
+  <!-- ============================================================ -->
+  <section data-page="kontakt" class="max-w-6xl mx-auto" hidden>
+
+    <div class="py-12 sm:py-16 grid lg:grid-cols-5 gap-10 items-start">
+
+      <div class="lg:col-span-2 min-w-0">
+        <p class="font-hand text-2xl text-hop mb-3">Odpowiadamy, gdy pomysł dojrzeje</p>
+        <h1 class="font-rye text-5xl sm:text-6xl leading-[1.05]">Zamów degustację.</h1>
+        <p class="mt-6 text-lg leading-relaxed">
+          Opisz swój projekt. Przeczytamy go na głos, odłożymy do piwnicy i wrócimy do niego,
+          kiedy nabierze charakteru. Zwykle trwa to od sześciu do ośmiu tygodni.
+        </p>
+
+        <dl class="mt-8 space-y-4">
+          <div>
+            <dt class="font-semibold">Adres warzelni</dt>
+            <dd>ul. Chmielna 404, 00-404 Warszawa<br><span class="font-hand text-xl">piwnica, zapukać trzy razy</span></dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Telefon</dt>
+            <dd class="tabular-nums select-all">+48 000 000 000</dd>
+            <dd class="font-hand text-xl">dzwonić tylko w pełnię księżyca</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">E-mail</dt>
+            <dd class="select-all">warzelnia@kraftowykod.pl</dd>
+            <dd class="font-hand text-xl">drukujemy wszystkie maile i odpisujemy listownie</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Godziny otwarcia</dt>
+            <dd class="tabular-nums">Pon–Czw: 10:00–14:00</dd>
+            <dd>Piątek: deploy, prosimy nie dzwonić</dd>
+          </div>
+        </dl>
+
+        <p class="mt-8 p-4 border-2 border-pencil text-pencil rounded-sm">
+          Nie odpowiadamy na zapytania napisane przez AI. Poznamy po myślnikach.
+        </p>
+      </div>
+
+
+      <!-- FORMULARZ. zamówienie leci mailem do warzelni. to jedyna rzecz w firmie, która dociera na czas -->
+      <!-- adres mailowy warzelni NIE jest w tym pliku. Mateusz pilnuje tego osobiście -->
+      <form id="order-form" class="lg:col-span-3 min-w-0 notebook rounded-sm shadow-[6px_6px_0_rgba(43,29,16,0.35)] py-8 pr-6 pl-14 space-y-5" novalidate>
+        <h2 class="font-rye text-2xl">Zamówienie na partię kodu</h2>
+
+        <div>
+          <label for="name" class="block font-semibold">Imię i nazwisko</label>
+          <input id="name" name="name" type="text" required placeholder="np. Jan z działu zakupów" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40 focus:ring-0">
+        </div>
+
+        <div>
+          <label for="company" class="block font-semibold">Firma</label>
+          <input id="company" name="company" type="text" placeholder="np. Hurtownia Śrubek Sp. z o.o." class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
+        </div>
+
+        <div>
+          <label for="email" class="block font-semibold">E-mail do odpowiedzi</label>
+          <input id="email" name="email" type="email" required placeholder="odpiszemy, gdy pomysł dojrzeje" class="mt-1 w-full bg-transparent border-0 border-b-2 border-ink font-hand text-2xl px-1 py-1 placeholder:text-ink/40">
+        </div>
+
+        <div>
+          <label for="project" class="block font-semibold">Opis projektu</label>
+          <textarea id="project" name="project" rows="4" required placeholder="Coś jak Uber, ale dla taczek." class="mt-1 w-full bg-transparent border-2 border-ink rounded-sm font-hand text-2xl px-2 py-1 placeholder:text-ink/40"></textarea>
+        </div>
+
+        <div>
+          <label for="urgency" class="block font-semibold">Na kiedy?</label>
+          <select id="urgency" name="urgency" class="mt-1 w-full bg-label border-2 border-ink rounded-sm px-2 py-2">
+            <option>Na wczoraj (dopłata za pośpiech +300%)</option>
+            <option>Na przyszły kwartał</option>
+            <option selected>Mamy czas, rozumiemy rzemiosło</option>
+            <option>Dla wnuków</option>
+          </select>
+        </div>
+
+        <fieldset class="space-y-2">
+          <legend class="font-semibold mb-1">Dodatki</legend>
+          <label class="flex items-start gap-3">
+            <input id="addon-print" type="checkbox" class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>Pełny wydruk kodu źródłowego (+0,40 zł za linię, oprawa w skórę)</span>
+          </label>
+          <label class="flex items-start gap-3">
+            <input id="addon-floppy" type="checkbox" class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>Dostawa na dyskietkach 3,5" (kaucja zwrotna)</span>
+          </label>
+          <label class="flex items-start gap-3">
+            <input id="addon-deadline" type="checkbox" required class="mt-1 w-5 h-5 accent-[#3d5726]">
+            <span>Rozumiem, że termin to sugestia, a nie obietnica</span>
+          </label>
+        </fieldset>
+
+        <!-- pułapka na boty. człowiek tego pola nie widzi, bot zawsze je zaznacza, bo boty nie mają wyczucia -->
+        <input id="botcheck" name="botcheck" type="checkbox" class="hidden" tabindex="-1" autocomplete="off">
+
+        <p id="form-error" class="text-pencil font-semibold" hidden></p>
+
+        <button id="order-submit" type="submit" class="bg-hop disabled:opacity-60 disabled:cursor-wait text-label font-semibold px-6 py-3 rounded-sm shadow-[4px_4px_0_#2b1d10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#2b1d10] transition-transform">
+          Złóż zamówienie
+        </button>
+
+        <div id="form-done" class="border-2 border-hop bg-label p-4 rounded-sm" hidden>
+          <p class="font-rye text-xl text-hop">Zamówienie złożone.</p>
+          <p class="mt-2">Twój pomysł trafił do piwnicy. Odezwiemy się, gdy dojrzeje. Szacowany czas: 6–8 tygodni, plus jeden sprint na zaskoczenie.</p>
+          <p class="font-hand text-xl mt-2">Numer partii: <span id="batch-no" class="tabular-nums"></span></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+
+<!-- ===================== STOPKA ===================== -->
+<footer class="mt-8 bg-ink text-label px-4 sm:px-8 py-10">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6">
+    <div>
+      <p class="font-rye text-2xl">Kraftowy Kod</p>
+      <p class="mt-2 text-label/80">Wyprodukowano ręcznie w Polsce. Partia limitowana, numerowana, bez gwarancji.</p>
+    </div>
+    <div class="sm:text-right text-label/80">
+      <p>Ta strona została napisana w Notatniku. Pamiętamy każdą linijkę.</p>
+      <p class="font-hand text-xl text-kraft mt-2">Zajrzyj w źródło strony, jest ładne.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // prosty router na hashach. napisany w 40 minut, debugowany 3 dni
+  var pages = ['start', 'technologie', 'o-nas', 'kontakt'];
+
+  function showPage() {
+    var current = location.hash.replace('#', '');
+    if (pages.indexOf(current) === -1) current = 'start';
+
+    document.querySelectorAll('[data-page]').forEach(function (section) {
+      section.hidden = section.getAttribute('data-page') !== current;
+    });
+
+    document.querySelectorAll('[data-nav]').forEach(function (link) {
+      if (link.getAttribute('data-nav') === current) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('bg-ink', 'text-label');
+      } else {
+        link.removeAttribute('aria-current');
+        link.classList.remove('bg-ink', 'text-label');
+      }
+    });
+
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('hashchange', showPage);
+  showPage();
+
+
+  /*
+    INTEGRACJA Z WEB3FORMS. KRONIKA WDROŻENIA.
+
+    Dzień 1.  Tadeusz pyta, co to jest „Web3”. Zacheusz mówi, że blockchain.
+              Zebranie kryzysowe, 4 godziny. Ustalamy, że nie wchodzimy w kryptowaluty.
+    Dzień 2.  Okazuje się, że to nie blockchain, tylko formularz. Nikt nie przeprasza.
+    Dzień 3.  Mateusz przepisuje klucz dostępu z kartki. 36 znaków.
+              Trzy podejścia, dwie literówki, jeden myślnik za dużo.
+    Dzień 4.  Spór, czy „fetch” to funkcja, czy komenda dla psa. Pies Tadeusza
+              przynosi patyk. Pies wygrywa, działa szybciej niż nasz kod.
+    Dzień 5.  Zacheusz degustuje odpowiedź serwera. Opisuje ją jako „JSON wytrawny,
+              z nutą CORS-a i długim finiszem”. Nie naprawia niczego.
+    Dzień 6.  Pierwsze testowe zamówienie. Wysłane w piątek o 16:45. Dotarło.
+              Nikt nie wie dlaczego.
+    Dzień 9.  Debata etyczna: czy wysyłanie maila przez cudzy serwer to jeszcze rzemiosło.
+              Kompromis: każdy przecinek w tym fragmencie postawiony ręcznie.
+    Dzień 10. Odkrywamy, że klucz może być publiczny, bo pozwala tylko wysyłać maile do nas.
+              Tadeusz i tak zakleja go na monitorze karteczką.
+
+    Status: działa. NIE RUSZAĆ.
+  */
+  var WEB3FORMS_KEY = 'a10dc5a0-3b21-49fb-a80c-6a3ddd840329'; // przepisany z kartki, sprawdzony dwa razy
+
+  var form = document.getElementById('order-form');
+  var errorBox = document.getElementById('form-error');
+  var doneBox = document.getElementById('form-done');
+  var submitButton = document.getElementById('order-submit');
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var project = document.getElementById('project').value.trim();
+    var deadline = document.getElementById('addon-deadline').checked;
+
+    if (!name || !project) {
+      showError('Wpisz imię i opis projektu. Bez składników nie uwarzymy kodu.');
+      return;
+    }
+    if (!email || !document.getElementById('email').checkValidity()) {
+      showError('Wpisz poprawny e-mail. Inaczej odpowiedź przyjdzie gołębiem, a to potrwa.');
+      return;
+    }
+    if (!deadline) {
+      showError('Zaznacz, że termin to sugestia. Bez tego nie przyjmujemy zamówień.');
+      return;
+    }
+
+    errorBox.hidden = true;
+    doneBox.hidden = true;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Wysyłamy, ręcznie…';
+
+    var batchNo = String(Math.floor(Math.random() * 9000) + 1000);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: 'Kraftowy Kod: zamówienie partii nr ' + batchNo,
+        from_name: 'Kraftowy Kod, formularz',
+        name: name,
+        email: email,
+        company: document.getElementById('company').value.trim(),
+        project: project,
+        urgency: document.getElementById('urgency').value,
+        printout: document.getElementById('addon-print').checked ? 'tak' : 'nie',
+        floppy: document.getElementById('addon-floppy').checked ? 'tak' : 'nie',
+        botcheck: document.getElementById('botcheck').checked
+      })
+    })
+      .then(function (response) { return response.json(); })
+      .then(function (result) {
+        if (!result.success) throw new Error(result.message);
+        document.getElementById('batch-no').textContent = batchNo;
+        doneBox.hidden = false;
+        form.reset();
+      })
+      .catch(function () {
+        showError('Nie udało się wysłać zamówienia. Sprawdź internet i spróbuj ponownie albo zadzwoń w pełnię.');
+      })
+      .then(function () {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Złóż zamówienie';
+      });
+  });
+</script>
