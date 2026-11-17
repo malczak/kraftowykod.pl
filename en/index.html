@@ -80,8 +80,8 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Kraftowy Kod logo, the slogan "Code slowly ageing in our heads" and handwritten code in a notebook with Copilot crossed out">
-<meta property="og:image" content="https://kraftowykod.pl/og/og-en-manifest.png">
+<meta property="og:image:alt" content="The Kraftowy Kod logo, the slogan “Code slowly ageing in our heads” and handwritten code in a notebook with Copilot crossed out">
+<meta property="og:image"content="https://kraftowykod.pl/og/og-en-manifest.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -91,18 +91,32 @@
 <meta name="twitter:title" content="Kraftowy Kod: code slowly ageing in our heads">
 <meta name="twitter:description" content="Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.">
 <meta name="twitter:image" content="https://kraftowykod.pl/og/og-en.png">
-<meta name="twitter:image:alt" content="The Kraftowy Kod logo, the slogan "Code slowly ageing in our heads" and handwritten code in a notebook with Copilot crossed out">
+<meta name="twitter:image:alt" content="The Kraftowy Kod logo, the slogan “Code slowly ageing in our heads” and handwritten code in a notebook with Copilot crossed out">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Kraftowy Kod",
-  "url": "https://kraftowykod.pl/",
-  "logo": "https://kraftowykod.pl/apple-touch-icon.png",
-  "slogan": "Code slowly ageing in our heads.",
-  "description": "Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.",
-  "foundingDate": "2014"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kraftowykod.pl/#organization",
+      "name": "Kraftowy Kod",
+      "url": "https://kraftowykod.pl/",
+      "logo": "https://kraftowykod.pl/apple-touch-icon.png",
+      "slogan": "Code slowly ageing in our heads.",
+      "description": "Kraftowy Kod is a one-of-a-kind software house from Poland. We write code by hand, with no AI, in small batches. Code slowly ageing in our heads since 2014.",
+      "foundingDate": "2014"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kraftowykod.pl/en/#webpage",
+      "url": "https://kraftowykod.pl/en/",
+      "name": "Kraftowy Kod | Hand-brewed software house, no AI",
+      "inLanguage": "en-GB",
+      "primaryImageOfPage": "https://kraftowykod.pl/og/og-en.png",
+      "about": { "@id": "https://kraftowykod.pl/#organization" }
+    }
+  ]
 }
 </script>
 
@@ -297,7 +311,7 @@
         <li><a href="#stack" data-nav="stack" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Tech stack</a></li>
         <li><a href="#about" data-nav="about" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">About us</a></li>
         <li><a href="#contact" data-nav="contact" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Contact</a></li>
-        <li><a href="../" lang="pl" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">Po polsku</a></li>
+        <li><a href="../" hreflang="pl" lang="pl" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">Po polsku</a></li>
       </ul>
     </nav>
 

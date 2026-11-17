@@ -96,13 +96,27 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Kraftowy Kod",
-  "url": "https://kraftowykod.pl/",
-  "logo": "https://kraftowykod.pl/apple-touch-icon.png",
-  "slogan": "Kod długo dojrzewający w naszych głowach.",
-  "description": "Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.",
-  "foundingDate": "2014"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://kraftowykod.pl/#organization",
+      "name": "Kraftowy Kod",
+      "url": "https://kraftowykod.pl/",
+      "logo": "https://kraftowykod.pl/apple-touch-icon.png",
+      "slogan": "Kod długo dojrzewający w naszych głowach.",
+      "description": "Kraftowy Kod to jedyny taki software house w Polsce. Piszemy kod ręcznie, bez AI, w małych partiach. Kod długo dojrzewający w naszych głowach, od 2014 roku.",
+      "foundingDate": "2014"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kraftowykod.pl/#webpage",
+      "url": "https://kraftowykod.pl/",
+      "name": "Kraftowy Kod | Ręcznie warzony software house, bez AI",
+      "inLanguage": "pl-PL",
+      "primaryImageOfPage": "https://kraftowykod.pl/og/og-pl.png",
+      "about": { "@id": "https://kraftowykod.pl/#organization" }
+    }
+  ]
 }
 </script>
 
@@ -298,7 +312,7 @@
         <li><a href="#o-nas" data-nav="o-nas" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">O nas</a></li>
         <li><a href="#kontakt" data-nav="kontakt" class="block px-4 py-2 border-2 border-ink rounded-sm hover:bg-ink hover:text-label">Kontakt</a></li>
         <!-- wersja angielska, przetłumaczona słownikiem papierowym -->
-        <li><a href="en/index.html" lang="en" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">English</a></li>
+        <li><a href="en/" hreflang="en" lang="en" class="block px-4 py-2 font-hand text-xl underline decoration-2 underline-offset-4 hover:text-hop">English</a></li>
       </ul>
     </nav>
 
